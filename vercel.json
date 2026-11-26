@@ -45,6 +45,19 @@
           "value": "application/manifest+json"
         }
       ]
+    },
+    {
+      "source": "/kit/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "https://sys.oseurope.com"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "no-cache"
+        }
+      ]
     }
   ]
 }
