@@ -1,0 +1,6 @@
+public/config.js
+node_modules/
+.vercel/
+.env*
+*export*.json
+.DS_Store

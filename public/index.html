@@ -1,0 +1,934 @@
+<!doctype html>
+<html lang="es"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#e9e1f7">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+
+<title>MIA Sant Cugat</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;800;900&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: una columna tipo libreta de llamadas; cabecera lavanda con onda suave, tarjetas por socia, pestañas abajo en móvil */
+:root{
+  --bg:#f6f3fb; --surface:#ffffff; --ink:#2a2140; --muted:#6d6385; --line:#e2dbef;
+  --lav:#e9e1f7; --lav-strong:#cdbcec; --accent:#6a3fa6; --accent-ink:#ffffff;
+  --ok:#1f7a55; --ok-bg:#e2f4ec; --warn:#9a5b00; --warn-bg:#fdf0d9; --bad:#b0283f; --bad-bg:#fbe3e7; --info:#2d5ba8; --info-bg:#e4ecfa;
+  --f-display:"Nunito","Omnes","Trebuchet MS",system-ui,sans-serif;
+  --f-body:"Nunito Sans","Omnes",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --r:14px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#17131f; --surface:#211b2d; --ink:#efeaf8; --muted:#a99fc0; --line:#352c47;
+  --lav:#2b2340; --lav-strong:#4a3b6c; --accent:#b996f0; --accent-ink:#1b1428;
+  --ok:#6fd4a6; --ok-bg:#16352a; --warn:#f0bd6a; --warn-bg:#3a2c12; --bad:#f58ca0; --bad-bg:#3d1a22; --info:#8fb3f2; --info-bg:#1b2840; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#17131f; --surface:#211b2d; --ink:#efeaf8; --muted:#a99fc0; --line:#352c47;
+  --lav:#2b2340; --lav-strong:#4a3b6c; --accent:#b996f0; --accent-ink:#1b1428;
+  --ok:#6fd4a6; --ok-bg:#16352a; --warn:#f0bd6a; --warn-bg:#3a2c12; --bad:#f58ca0; --bad-bg:#3d1a22; --info:#8fb3f2; --info-bg:#1b2840; color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.45;padding-bottom:88px}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:860px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header.top{background:var(--lav);position:relative;overflow:hidden}
+header.top .wrap{padding-block:18px 26px;display:flex;flex-direction:column;gap:12px;position:relative;z-index:1}
+header.top svg.wave{position:absolute;inset:auto 0 0 0;width:100%;height:46px;display:block}
+.brandrow{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap}
+h1{font-family:var(--f-display);font-weight:900;font-size:1.7rem;margin:0;letter-spacing:-.01em;text-wrap:balance}
+h1 small{display:block;font-family:var(--f-body);font-weight:600;font-size:.82rem;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+.sync{font-size:.8rem;color:var(--muted);text-align:right}
+.gsearch{position:relative}.gsearch input{border:1.5px solid var(--lav-strong);border-radius:12px;padding:10px 12px;background:var(--surface);width:100%;font-size:1rem}
+.who{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.who span{font-size:.8rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-right:4px}
+.chip{border:1.5px solid var(--lav-strong);background:var(--surface);border-radius:999px;padding:6px 14px;font-weight:700;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+nav.tabs{position:fixed;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--line);z-index:5;padding-bottom:env(safe-area-inset-bottom,0px)}
+nav.tabs .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding-block:6px}
+nav.tabs a{display:flex;flex-direction:column;align-items:center;gap:2px;text-decoration:none;color:var(--muted);font-weight:700;font-size:.78rem;padding:6px 4px;border-radius:10px}
+nav.tabs a b{font-family:var(--f-display);font-size:1.05rem;color:inherit}
+nav.tabs a[aria-current="page"]{background:var(--lav);color:var(--accent)}
+main .wrap{padding-block:18px;display:flex;flex-direction:column;gap:16px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px}
+.stat .n{font-family:var(--f-display);font-weight:900;font-size:1.6rem;font-variant-numeric:tabular-nums}
+.stat .l{font-size:.8rem;color:var(--muted);font-weight:600}
+.stat.alert .n{color:var(--bad)}
+h2{font-family:var(--f-display);font-weight:800;font-size:1.15rem;margin:6px 0 0}
+.hint{color:var(--muted);font-size:.88rem;margin:0}
+.list{display:flex;flex-direction:column;gap:10px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.card.vencida{border-left:5px solid var(--bad)}
+.card.hoy{border-left:5px solid var(--accent)}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;min-width:0}
+.name{font-weight:800;font-family:var(--f-display);font-size:1.05rem;text-transform:capitalize}
+.num{color:var(--muted);font-size:.8rem;font-variant-numeric:tabular-nums}
+.pill{font-size:.72rem;font-weight:800;letter-spacing:.03em;padding:3px 9px;border-radius:999px;background:var(--lav);color:var(--accent);white-space:nowrap}
+.pill.bad{background:var(--bad-bg);color:var(--bad)} .pill.ok{background:var(--ok-bg);color:var(--ok)} .pill.warn{background:var(--warn-bg);color:var(--warn)} .pill.info{background:var(--info-bg);color:var(--info)}
+.meta{font-size:.85rem;color:var(--muted)}
+.last{font-size:.86rem;background:var(--bg);border-radius:10px;padding:8px 10px;overflow-wrap:anywhere}
+.last b{color:var(--ink)}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+.btn{border:1.5px solid var(--lav-strong);background:var(--surface);border-radius:10px;padding:8px 14px;font-weight:700;cursor:pointer;text-decoration:none;color:var(--ink);display:inline-flex;align-items:center;gap:6px}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.tel{font-family:var(--f-mono);font-size:.9rem}
+form.reg{border-top:1px dashed var(--line);padding-top:10px;display:flex;flex-direction:column;gap:10px}
+.codes{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px}
+.code{border:1.5px solid var(--line);border-radius:10px;padding:8px 10px;text-align:left;background:var(--surface);cursor:pointer}
+.code b{display:block;font-size:.85rem}
+.code small{color:var(--muted);font-size:.74rem;line-height:1.25;display:block}
+.code[aria-pressed="true"]{border-color:var(--accent);background:var(--lav)}
+label.f{display:flex;flex-direction:column;gap:4px;font-size:.82rem;font-weight:700;color:var(--muted)}
+input[type=text],input[type=date],input[type=search],select,textarea{border:1.5px solid var(--line);border-radius:10px;padding:8px 10px;background:var(--surface);min-width:0;width:100%}
+textarea{resize:vertical;min-height:58px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media (max-width:480px){.grid2{grid-template-columns:1fr}}
+.msgbox{display:flex;flex-direction:column;gap:6px}
+.msgbox textarea{min-height:92px;font-size:.92rem;line-height:1.4}
+details.resp{background:var(--ok-bg);border-radius:10px;padding:8px 10px}
+details.resp summary{cursor:pointer;font-weight:800;color:var(--ok);font-size:.9rem}
+details.resp[open] summary{margin-bottom:8px}
+details.resp .inner{display:flex;flex-direction:column;gap:6px}
+.sugst{font-size:.84rem;color:var(--ink)}
+.sugst.err{color:var(--bad)}
+.ose{font-family:var(--f-mono);font-size:.78rem;background:var(--lav);border-radius:10px;padding:8px 10px;overflow-wrap:anywhere}
+.cond{background:var(--warn-bg);border-radius:10px;padding:10px 12px;font-size:.86rem;display:grid;grid-template-columns:auto 1fr;gap:2px 12px}.cond b{color:var(--ink)}.cond .h{grid-column:1/-1;font-weight:800;color:var(--warn);margin-bottom:2px}.cond .x{grid-column:1/-1;color:var(--muted);font-size:.78rem;margin-top:4px}
+.err{color:var(--bad);font-size:.85rem;font-weight:700}
+.empty{background:var(--surface);border:1.5px dashed var(--lav-strong);border-radius:var(--r);padding:22px;text-align:center;color:var(--muted)}
+.filters{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:8px}
+@media (max-width:640px){.filters{grid-template-columns:1fr 1fr}}
+.tbl{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
+table{border-collapse:collapse;width:100%;font-size:.88rem}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap;font-variant-numeric:tabular-nums}
+th{font-size:.74rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+td.n{text-align:right}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px;display:flex;flex-direction:column;gap:6px}
+.kpi .v{font-family:var(--f-display);font-weight:900;font-size:2rem;font-variant-numeric:tabular-nums}
+.kpi .t{font-weight:800}
+.kpi .d{font-size:.8rem;color:var(--muted)}
+.bar{height:8px;border-radius:99px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent)}
+.kpi.ok .v{color:var(--ok)} .kpi.warn .v{color:var(--warn)} .kpi.bad .v{color:var(--bad)}
+.kpi.hero{grid-column:1/-1;border:2px solid var(--accent);background:linear-gradient(180deg,var(--lav),var(--surface))}
+.kpi.hero .v{font-size:2.6rem;color:var(--accent)}
+.kpi.hero .sub{display:flex;gap:14px;flex-wrap:wrap;font-size:.86rem}
+.kpi.hero .sub b{font-family:var(--f-display);font-size:1.1rem}
+.script{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px}
+.script h3{margin:0 0 6px;font-family:var(--f-display);font-size:1rem}
+.script p{margin:6px 0;max-width:68ch}
+.script .q{font-style:italic}
+details.script summary{cursor:pointer;font-weight:800;font-family:var(--f-display)}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(84px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:12px;font-weight:700;z-index:9}
+@media (prefers-reduced-motion:no-preference){.card{transition:border-color .2s}}
+.card.riesgo{border-left:5px solid var(--warn);background:linear-gradient(90deg,var(--warn-bg),var(--surface) 60%)}
+.card.riesgo .quote{font-size:.92rem;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:8px 10px;overflow-wrap:anywhere}
+</style>
+
+<script src="config.js"></script>
+<script src="vendor/supabase.js"></script>
+<script src="shim.js"></script>
+</head><body>
+<header class="top">
+  <div class="wrap">
+    <div class="brandrow">
+      <h1><small>Curves Sant Cugat</small>Socias MIA</h1>
+      <div class="sync" id="sync">Conectando…</div>
+    </div>
+    <div class="gsearch"><input type="search" id="gq" placeholder="Buscar socia: nombre, nº o teléfono" aria-label="Buscar socia en cualquier estado" autocomplete="off"></div>
+    <div class="who" role="group" aria-label="Quién eres">
+      <span>Mensajes</span>
+      <button class="chip" data-lang="es" aria-pressed="false">Castellano</button>
+      <button class="chip" data-lang="ca" aria-pressed="false">Català</button>
+      <span style="margin-left:10px">Soy</span>
+      <button class="chip" data-who="Susana" aria-pressed="false">Susana</button>
+      <button class="chip" data-who="Manoli" aria-pressed="false">Manoli</button>
+      <button class="chip" data-who="Viviana" aria-pressed="false">Viviana</button>
+      <button class="chip" data-who="Eva" aria-pressed="false">Eva</button>
+    </div>
+  </div>
+  <svg class="wave" viewBox="0 0 1200 46" preserveAspectRatio="none" aria-hidden="true"><path d="M0 30 C 200 6, 380 46, 600 26 S 1000 4, 1200 24 L1200 46 L0 46 Z" fill="var(--bg)"/></svg>
+</header>
+
+<main><div class="wrap" id="view"><div class="empty">Cargando socias…</div></div></main>
+
+<nav class="tabs"><div class="wrap">
+  <a href="#hoy" data-tab="hoy"><b id="tabHoyN">·</b>Mi lista</a>
+  <a href="#todas" data-tab="todas"><b id="tabTodasN">·</b>Todas</a>
+  <a href="#informe" data-tab="informe"><b>%</b>Informe</a>
+  <a href="#guion" data-tab="guion"><b>“”</b>Guion</a>
+</div></nav>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+(function(){
+const TEAM=["Susana","Manoli","Viviana","Eva"];
+const CODES=[
+ {k:"VUELVE",t:"Vuelve",d:"Da fecha concreta para venir",fecha:"req",fl:"Día que viene"},
+ {k:"SIN RESPUESTA",t:"Sin respuesta",d:"No coge; WhatsApp enviado",fecha:"no"},
+ {k:"SIN FECHA",t:"Contesta sin fecha",d:"Tiempo, ánimo… no concreta",fecha:"opt",fl:"Día de seguimiento (opcional)"},
+ {k:"SALUD",t:"Salud",d:"Lesión, enfermedad o cuidar a un familiar",fecha:"opt",fl:"Revisar el día"},
+ {k:"FUERA",t:"Fuera",d:"Viaje o vacaciones",fecha:"req",fl:"Día que vuelve"},
+ {k:"RIESGO BAJA",t:"Riesgo de baja",d:"Habla de dejarlo o de dinero",fecha:"no"},
+ {k:"ESCALAR",t:"Pasar a Eva",d:"Cualquier otro caso delicado",fecha:"no"},
+ {k:"BAJA DEFINITIVA",t:"Cursar baja definitiva",d:"Quiere darse de baja: infórmale de cómo tramitarla",fecha:"opt",fl:"Seguimiento el día",soloEva:true}
+];
+const CANALES=["Llamada","WhatsApp","En persona"];
+const NOTA_MAX=200;
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const pad=n=>String(n).padStart(2,"0");
+const iso=d=>d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());
+const parseISO=s=>{const [y,m,d]=s.split("-").map(Number);return new Date(y,m-1,d);};
+const today=()=>iso(new Date());
+const fmt=s=>{if(!s)return "";const [y,m,d]=s.slice(0,10).split("-");return d+"/"+m;};
+const daysBetween=(a,b)=>Math.round((parseISO(b)-parseISO(a))/86400000);
+function addWorkdays(s,n){const d=parseISO(s);let k=0;while(k<n){d.setDate(d.getDate()+1);const w=d.getDay();if(w!==0&&w!==6)k++;}return iso(d);}
+function nextWorkdayFrom(s){const d=parseISO(s);d.setDate(d.getDate()+1);while(d.getDay()===0||d.getDay()===6)d.setDate(d.getDate()+1);return iso(d);}
+function diasSin(s){return s.ultEntreno?daysBetween(s.ultEntreno,today()):s.dias||0;}
+// Reglas MIA (Eva, 09/11/2026): se gestionan desde 6 días sin venir. 6-15 Susana, 16-30 Manoli, 31+ Eva.
+const MIN_DIAS=6;
+function tramoOf(d){return d<=15?"6-15":d<=30?"16-30":"31+";}
+function addDaysISO(s,n){const d=parseISO(s);d.setDate(d.getDate()+n);return iso(d);}
+function desdeGestion(s){return addDaysISO(s.ultEntreno,MIN_DIAS);} // primer día en que entra en la lista
+// Ausencias: hasta esa fecha (sin incluir) sus MIA las lleva Eva
+const AUSENCIAS={Viviana:"2026-11-27"}; // 18/11 noche: Susana y Manoli vuelven a llevar sus MIA (Eva, 18/11/2026)
+function presente(w){return w&&AUSENCIAS[w]&&today()<AUSENCIAS[w]?"Eva":w;}
+function ownerBase(s){if(s.ownerManual)return s.ownerManual;const d=diasSin(s);if(d<=15)return "Susana";if(d<=30)return "Manoli";return "Eva";}
+function ownerOf(s){const w=ownerBase(s);return AUSENCIAS[w]&&today()<AUSENCIAS[w]?"Eva":w;}
+function nombreCorto(n){const p=String(n||"").trim().split(/\s+/)[0]||"";return p.charAt(0).toUpperCase()+p.slice(1).toLowerCase();}
+function lsGet(k){try{return localStorage.getItem(k);}catch(e){return null;}}
+function lsSet(k,v){try{localStorage.setItem(k,v);}catch(e){}}
+
+let me=presente(lsGet("mia.me")||"");
+let mensajes={}, msgEdits={}, msgSent={}; let socias=[], gestiones=[], estado=null, db=null, snap=null, casos={}, vueltas=[], informes=[], openForm=null, filtro={q:"",owner:"",tramo:"",cod:""};
+// Red de seguridad (Eva, 12/11/2026): respuestas de WhatsApp de cualquier socia que suenan a riesgo de baja
+let riesgos=[];
+let buscar=""; const nrm=x=>String(x??"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
+let ready={s:false,g:false}; let pendingRender=false;
+// Respuesta sugerida por Claude a lo que contesta la socia (Eva, 11/11/2026)
+let sampleFn=null; const resp={}, sugg={}, sugSt={};
+// Idioma de los mensajes: castellano o catalán (Eva, 11/11/2026)
+let lang=lsGet("mia.lang")==="ca"?"ca":"es", trAll=false;
+function paintLang(){document.querySelectorAll(".chip[data-lang]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.lang===lang)));}
+document.querySelectorAll(".chip[data-lang]").forEach(b=>b.addEventListener("click",()=>{lang=b.dataset.lang;lsSet("mia.lang",lang);paintLang();render();}));
+paintLang();
+function promptTr(textos,to){
+  return `Traduce cada mensaje de WhatsApp al ${to==="ca"?"catalán (catalán central, natural y cercano, como se habla en Sant Cugat)":"castellano (español de España, natural y cercano)"}. Son mensajes de una entrenadora de un club de fitness para mujeres a sus socias. Mantén el tono, el sentido y la longitud; no añadas ni quites nada, sin emojis. No traduzcas los nombres propios. Si aparece el marcador {yo}, déjalo exactamente igual. Si un mensaje ya está en ese idioma, devuélvelo igual.
+
+Responde SOLO con un objeto JSON con las mismas claves y el texto traducido como valor.
+
+${JSON.stringify(textos)}`;
+}
+function sinCa(list){const seen=new Set();return list.filter(s=>{const k=s.num+"-"+s.ultEntreno;const m=mensajes[k];if(!m||m.textoCa||seen.has(k)||msgEdits[s.num]!=null)return false;if(s.mismoCaso&&["SIN RESPUESTA","VUELVE","SIN FECHA","SALUD","FUERA"].includes(s.ultGestionApp?.codigo)&&!respuesta(s))return false;seen.add(k);return true;});}
+async function traducirCard(num,to,btn){
+  const s=socias.find(x=>x.num===num), t=document.getElementById("m"+num);
+  if(!s||!t||!sampleFn) return; const txt=t.value.trim(); if(!txt) return;
+  const old=btn.textContent; btn.disabled=true; btn.textContent="Traduciendo…";
+  try{
+    const r=await sampleFn.json(promptTr({m:txt},to),{modelTier:"quick"});
+    const out=String(r?.m||"").trim(); if(!out) throw {code:"empty_completion"};
+    msgEdits[num]=out; if(sugg[num]) sugg[num].respuesta=out;
+    t.value=out; const a=document.querySelector(`[data-wa="${num}"]`); if(a) a.href=waHref(s,out);
+    if(msgSent[num]!=null) msgSent[num]=out;
+    toast(to==="ca"?"Missatge en català":"Mensaje en castellano");
+  }catch(e){toast(e&&e.code==="rate_limited"?"Demasiadas peticiones: espera un minuto":"No he podido traducirlo. Vuelve a probar.");}
+  btn.disabled=false; btn.textContent=old;
+}
+async function traducirTodos(){
+  if(!sampleFn||trAll) return;
+  const lista=sinCa(socias.filter(s=>isMine(s,me))); if(!lista.length) return;
+  trAll=true; render();
+  let hechos=0, fallo=false;
+  for(let i=0;i<lista.length;i+=25){
+    const trozo=lista.slice(i,i+25), textos={};
+    trozo.forEach(s=>{const k=s.num+"-"+s.ultEntreno;textos[k]=mensajes[k].texto;});
+    try{
+      const r=await sampleFn.json(promptTr(textos,"ca"),{modelTier:"quick"});
+      for(const k of Object.keys(textos)){
+        const v=String(r?.[k]||"").trim(); if(!v) continue;
+        mensajes[k]={...mensajes[k],textoCa:v}; hechos++;
+        if(db){try{await db.doc("mensajes/"+k).update({textoCa:v});}catch(er){}}
+      }
+    }catch(e){fallo=true;break;}
+  }
+  trAll=false; render();
+  toast(fallo?`Traducidos ${hechos}. El resto no se ha podido: vuelve a pulsar.`:`${hechos} mensajes pasados al català`);
+}
+// El club cierra sábados y domingos (Eva, 11/11/2026)
+function esFinde(s){const w=parseISO(s).getDay();return w===0||w===6;}
+const DIAS_ES=["domingo","lunes","martes","miércoles","jueves","viernes","sábado"];
+function hoyLargo(){const d=new Date();return `${DIAS_ES[d.getDay()]} ${today()}`;}
+// Fechas que cuadran aunque vayamos con retraso (Eva, 18/11/2026): el mensaje dice cuándo pasó de verdad, no "ayer" por defecto
+const DIAS_CA=["diumenge","dilluns","dimarts","dimecres","dijous","divendres","dissabte"];
+const cap=t=>t.charAt(0).toUpperCase()+t.slice(1);
+function hace(dia){const n=daysBetween(dia,today());return n<=0?"hoy":n===1?"ayer":`hace ${n} días`;}
+function cuando(dia){const n=daysBetween(dia,today()),w=parseISO(dia).getDay(),dd=+dia.slice(8,10);
+  if(lang==="ca") return n<=0?"avui":n===1?"ahir":n<=6?DIAS_CA[w]:`el dia ${dd}`;
+  return n<=0?"hoy":n===1?"ayer":n<=6?"el "+DIAS_ES[w]:`el día ${dd}`;}
+function diaCon(f){const w=parseISO(f).getDay(),dd=+f.slice(8,10);return lang==="ca"?`${DIAS_CA[w]} ${dd}`:`el ${DIAS_ES[w]} ${dd}`;}
+function horaGestion(s,a){if(!a)return "";if(a.hora)return a.hora;let f="";for(const g of gestiones){if(g.num===s.num&&g.dia===a.dia&&g.fecha>f)f=g.fecha;}return f.slice(11,16);}
+function promptSug(s,txt){
+  const d=diasSin(s), yo=me||"Eva", n=nombreCorto(s.nombre);
+  const hist=gestiones.filter(g=>g.num===s.num).sort((a,b)=>b.fecha.localeCompare(a.fecha)).slice(0,3)
+    .map(g=>`- ${DIAS_ES[parseISO(g.dia).getDay()]} ${g.dia} a las ${g.fecha.slice(11,16)} (${hace(g.dia)}) ${g.por} · ${g.codigo}${g.fechaRef?` (fecha ${g.fechaRef})`:""}${g.nota?` · nota: ${String(g.nota).slice(0,160)}`:""}${g.mensaje?` · le escribimos: «${String(g.mensaje).slice(0,240)}»`:""}`).join("\n")||"- (ninguna en la app)";
+  const o=s.ultGestionOSE; const oseL=o?`${o.fecha}${o.hora?" "+o.hora:""} (${hace(o.fecha)}) ${o.emp}: ${String(o.txt||"").slice(0,240)}`:"(nada)";
+  const w=waNueva(s)&&resp[s.num]==null?s.ultWA:null;
+  const cuandoResp=w?`${DIAS_ES[parseISO(w.dia).getDay()]} ${w.dia}${w.hora?" a las "+w.hora:""} (${hace(w.dia)})`:"no lo sé (lo ha pegado la entrenadora)";
+  const ultMsg=document.getElementById("m"+s.num)?.value?.trim()||"";
+  const codes=CODES.filter(c=>c.k!=="SIN RESPUESTA"&&(!c.soloEva||esDeEva(s))).map(c=>`${c.k} (${c.d})`).join("; ");
+  return `Eres ${yo}, entrenadora de un club Curves (circuito de fuerza de 30 minutos para mujeres) en Sant Cugat. Una socia que lleva días sin venir a entrenar acaba de contestar por WhatsApp. Escribe la respuesta que ${yo} le enviará YA por WhatsApp, y clasifica su respuesta.
+
+DATOS
+- Hoy: ${hoyLargo()}
+- Socia: ${n} (nombre completo ${s.nombre}), ${d} días sin venir (último entreno ${s.ultEntreno}).
+- Últimas gestiones en la app:
+${hist}
+- Última nota en OSE: ${oseL}
+- Último mensaje que le habíamos escrito (o que íbamos a escribirle): «${ultMsg.slice(0,400)}»
+
+LO QUE HA CONTESTADO LA SOCIA (escrito ${cuandoResp}):
+«${txt.slice(0,2000)}»
+
+CÓMO ESCRIBIR LA RESPUESTA
+- Es una respuesta dentro de una conversación ya abierta: empieza por "${n}," o "Hola ${n}!" y no te vuelvas a presentar salvo que haga falta (si acaso "Soy ${yo}").
+- IDIOMA: contesta SIEMPRE en el mismo idioma en que ha escrito ella en su último mensaje: si escribe en catalán, en catalán (central, natural y cercano); si escribe en castellano, en castellano. Da igual en qué idioma le escribimos antes. Tono cercano y cálido, sin presión, sin emojis. 1 a 3 frases, máximo 300 caracteres.
+- Agradece que conteste. Usa lo que dice: si está enferma, lesionada o cuidando a alguien, interésate por cómo está y deséale que se recupere, sin nombrar diagnósticos ni detalles médicos; si está de viaje, que disfrute y pregunta cuándo vuelve.
+- Si ya ha dado un día para venir, confírmalo con alegría ("¡Genial! Te esperamos el jueves") y no hagas más preguntas. Si no ha dado día, termina con una pregunta concreta para cerrarlo (mejor con dos opciones de día).
+- ${d<=15?"Lleva menos de 16 días: no propongas revisión del entreno, solo cerrar el día.":"Lleva 16 días o más: puedes proponer volver con una revisión del entreno, salvo que el motivo sea salud, cuidar a un familiar o un viaje."}
+- El club está CERRADO los sábados y domingos: nunca propongas, sugieras ni confirmes sábado ni domingo. Si ella dice que vendrá el fin de semana, dile con cariño que el finde estamos cerradas y propón el lunes u otro día entre semana. Las opciones de día que des siempre de lunes a viernes.
+- Nunca ofrezcas pausa, congelar la cuota ni descuentos. No digas "de Curves Sant Cugat" (tienen nuestro número guardado).
+- Si habla de dejarlo, de darse de baja o de dinero: no discutas ni prometas nada; mensaje breve y cariñoso de que Eva la llamará para hablarlo con calma (si quien escribe es Eva, propón hablarlo con calma por teléfono).
+- Si es un tema delicado o no sabes qué contestar, escribe algo breve y cálido y clasifícalo como ESCALAR.
+- FECHAS QUE CUADREN: fíjate en las fechas reales de arriba y en que hoy es ${hoyLargo()}. Si ella escribió hace más de un día y no le contestamos, empieza con una disculpa breve ("perdona que no te contestara antes"). Cuando hables de lo que pasó, usa el día de verdad ("el lunes", "el día 12"): nunca digas "ayer", "hoy" o "esta semana" si no cuadra. Si nombra "mañana", "el lunes", etc., entiéndelo desde el día en que ella escribió, no desde hoy; si ese día ya ha pasado, no lo confirmes: pregúntale por un día nuevo.
+
+CLASIFICACIÓN (una de): ${codes}
+- "fecha": el día concreto en formato AAAA-MM-DD a partir de hoy (día que viene si VUELVE, día que vuelve del viaje si FUERA, día para volver a preguntar si SALUD o SIN FECHA), o "" si no hay. Nunca sábado ni domingo (cerrado). Calcula el día a partir de hoy (${hoyLargo()}).
+- "nota": resumen de lo que ha dicho ella, máximo 150 caracteres, en español.
+
+Responde SOLO con este JSON:
+{"respuesta":"texto del WhatsApp","codigo":"VUELVE","fecha":"2026-11-13","nota":"resumen"}`;
+}
+async function sugerir(num){
+  const s=socias.find(x=>x.num===num); const txt=(s?respTexto(s):"").trim();
+  if(!s||!sampleFn) return;
+  if(!txt){toast("Pega primero lo que te ha contestado");return;}
+  if(!me){toast("Primero elige quién eres arriba");return;}
+  sugSt[num]={st:"busy",msg:"Pensando la respuesta…"}; paintSug(num);
+  try{
+    const r=await sampleFn.json(promptSug(s,txt),{modelTier:"quick",cache:false});
+    const respuesta=String(r?.respuesta||"").trim();
+    if(!respuesta) throw {code:"empty_completion"};
+    const ok=CODES.some(c=>c.k===r.codigo&&c.k!=="SIN RESPUESTA"&&(!c.soloEva||esDeEva(s)));
+    let fecha=/^\d{4}-\d{2}-\d{2}$/.test(r?.fecha||"")&&r.fecha>=today()?r.fecha:"";
+    if(fecha&&esFinde(fecha)) fecha=nextWorkdayFrom(addDaysISO(fecha,-1)); // sábado/domingo cerrado: pasa al lunes
+    sugg[num]={respuesta,codigo:ok?r.codigo:"",fecha,nota:String(r?.nota||"").slice(0,NOTA_MAX)};
+    msgEdits[num]=respuesta;
+    const t=document.getElementById("m"+num); if(t) t.value=respuesta;
+    const a=document.querySelector(`[data-wa="${num}"]`); if(a) a.href=waHref(s,respuesta);
+    const c=CODES.find(c=>c.k===sugg[num].codigo);
+    sugSt[num]={st:"ok",msg:`Respuesta lista en la caja de WhatsApp: revísala y pulsa <b>Abrir en WhatsApp</b>. Resultado propuesto: <b>${esc(c?c.t:"elígelo tú")}${fecha?" "+esc(fmt(fecha)):""}</b>. Después pulsa <b>Registrar gestión</b> (ya va rellenado).`};
+  }catch(e){
+    const code=e&&e.code;
+    if(code==="not_granted"||code==="sampling_disabled"||code==="not_declared"||code==="capability_disabled"){sampleFn=null;sugSt[num]={st:"err",msg:"No tengo permiso para usar Claude en esta página. Escribe tú la respuesta."};}
+    else if(code==="rate_limited") sugSt[num]={st:"err",msg:"Demasiadas peticiones seguidas. Espera un minuto y vuelve a pulsar."};
+    else sugSt[num]={st:"err",msg:"No he podido sugerir la respuesta. Vuelve a pulsar o escríbela tú."};
+  }
+  paintSug(num);
+}
+function sugBoxHTML(s){
+  if(!sampleFn||!s.tel) return "";
+  const n=s.num, st=sugSt[n]||{}, abierta=respTexto(s)||respuesta(s)||st.st;
+  return `<details class="resp" ${abierta?"open":""}><summary>¿Te ha contestado? Te sugiero la respuesta</summary><div class="inner">
+    <label class="f" for="r${esc(n)}">${resp[n]==null&&waNueva(s)?`Su respuesta, leída automáticamente de WhatsApp (${esc(fmt(s.ultWA.dia))}${s.ultWA.hora?" "+esc(s.ultWA.hora):""}). No hace falta que la pegues.`:"Pega aquí lo que te ha escrito"}</label>
+    <textarea id="r${esc(n)}" data-resp="${esc(n)}" rows="3" placeholder="Ej.: Hola! Esta semana he estado con gripe, el lunes ya voy">${esc(respTexto(s))}</textarea>
+    <div class="actions"><button class="btn primary" type="button" data-sug="${esc(n)}" ${st.st==="busy"?"disabled":""}>${sugg[n]?"Otra versión":"Sugerir respuesta"}</button></div>
+    <div class="sugst ${st.st==="err"?"err":""}" id="sg${esc(n)}" ${st.msg?"":"hidden"}>${st.msg||""}</div></div></details>`;
+}
+function paintSug(num){
+  const st=sugSt[num]||{}, el=document.getElementById("sg"+num), b=document.querySelector(`[data-sug="${num}"]`);
+  if(el){el.innerHTML=st.msg||"";el.hidden=!st.msg;el.classList.toggle("err",st.st==="err");}
+  if(b){b.disabled=st.st==="busy";b.textContent=st.st==="busy"?"Pensando…":sugg[num]?"Otra versión":"Sugerir respuesta";}
+}
+
+function toast(msg){const t=$("#toast");t.textContent=msg;t.hidden=false;clearTimeout(toast._t);toast._t=setTimeout(()=>t.hidden=true,2600);}
+function setWho(w){const r=presente(w);if(r!==w)toast(w+" no está hoy: sus MIA las lleva Eva");w=r;me=w;lsSet("mia.me",w);document.querySelectorAll(".chip[data-who]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.who===w)));render();}
+document.querySelectorAll(".chip[data-who]").forEach(b=>b.addEventListener("click",()=>setWho(b.dataset.who)));
+
+function build(){
+  if(!snap){ // sin foto todavía: usa los documentos de casos tal cual
+    socias=Object.values(casos).filter(c=>c.ultEntreno).map(c=>({...c,estado:c.estado||"abierta"}));
+    return;
+  }
+  socias=Object.entries(snap.rows||{}).map(([num,r])=>{
+    const c=casos[num]; const sc=!!c&&(c.caseUlt||c.ultEntreno)===r.u;
+    return {num,nombre:r.n,tel:r.t,ultEntreno:r.u,rp:r.rp,pb:r.pb,cat:r.c,nc:r.nc,notaFicha:r.f,abiertaDesde:r.a,
+      ownerManual:c?.ownerManual||"",estado:c?.estado==="excluida"?"excluida":"abierta",
+      ultGestionApp:c?.ultGestionApp||null,ultGestionOSE:c?.ultGestionOSE||null,ultWA:c?.ultWA||null,
+      prox:(p=>p&&p<addDaysISO(r.u,MIN_DIAS)?addDaysISO(r.u,MIN_DIAS):p)(sc?(c.prox||r.a):r.a),intentos:sc?(c.intentos||0):0,escalada:sc?!!c.escalada:false,
+      primeraGestion:sc?([c.primeraGestion,c.primeraOSE].filter(Boolean).sort()[0]||null):null,mismoCaso:sc,condiciones:c?.condiciones||null};
+  });
+}
+function caseDoc(s,extra){
+  const c=casos[s.num]||{};
+  return {...c,num:s.num,nombre:s.nombre,ultEntreno:s.ultEntreno,caseUlt:s.ultEntreno,ownerManual:s.ownerManual||"",
+    estado:s.estado==="excluida"?"excluida":"abierta",prox:s.prox||"",intentos:s.intentos||0,escalada:!!s.escalada,
+    primeraGestion:s.primeraGestion||null,ultGestionApp:s.ultGestionApp||null,...extra,actualizado:new Date().toISOString()};
+}
+// En proceso de baja (pb): no se gestionan como MIA
+function contactable(s){return s.estado==="abierta"&&!s.nc&&!s.pb&&diasSin(s)>=MIN_DIAS;}
+function isMine(s,w){if(!contactable(s))return false;if(s.escalada)return w==="Eva";return ownerOf(s)===w;}
+// Lo que las entrenadoras apuntan a mano en el Histórico de OSE (p. ej. contesta al WhatsApp tras un "Sin respuesta")
+function oseKey(o){return o?o.fecha+"T"+(o.hora||"00:00"):"";}
+function ultimaApp(num){let m="";for(const g of gestiones){if(g.num===num&&g.fecha>m)m=g.fecha;}return m;}
+// Respuestas leídas de WhatsApp Web cada hora (Eva, 11/11/2026): último mensaje del chat, si es de la socia
+// Respuestas que solo dan las gracias / de cortesía: no se anotan (Eva, 11/11/2026)
+const CORTESIA=new Set("gracias gracies merci mercis moltes muchas mil muchisimas moltissimes per por tu vuestro vostre interes el la los les y i a te et os us perfecte perfecto perfect ok okey okay vale val genial guay fantastico fantastic estupendo super molt muy bien be igualmente igualment tambien tambe vosotras vosaltres vosotros un una abrazo abrazos abracada abracades besos beso peto petons bss bsss saludos salutacions de nada res cuidaos hola bon dia buenos dias tardes tarda nit noches eva susana manoli viviana guapa guapas wapa preciosa reina carinyo carino nena chicas noies".split(" "));
+function esCortesia(t){const p=nrm(t).match(/[a-zçñ'-]+/g)||[];return p.length>0&&p.every(x=>CORTESIA.has(x.replace(/^['-]+|['-]+$/g,"")));}
+function waNueva(s){const w=s.ultWA;if(!w||!(w.dia>s.ultEntreno)||esCortesia(w.txt))return false;const ua=ultimaApp(s.num);return !ua||(w.dia+"T"+(w.hora||"00:00"))>ua;}
+function respTexto(s){return resp[s.num]!=null?resp[s.num]:(waNueva(s)?s.ultWA.txt:"");}
+function respuesta(s){if(waNueva(s))return true;const o=s.ultGestionOSE;if(!o||!(o.fecha>s.ultEntreno))return false;const ua=ultimaApp(s.num);return !!ua&&oseKey(o)>ua;}
+function dueState(s){const t=today();if(respuesta(s))return "hoy";if(!s.prox||s.prox<t)return s.prox?"vencida":"hoy";if(s.prox===t)return "hoy";return "futuro";}
+
+// Fecha y hora de cada gestión, con cuánto hace (Eva, 18/11/2026)
+function cuandoHTML(dia,hora){return `${esc(fmt(dia))}${hora?" "+esc(hora):""} <span class="meta">(${esc(hace(dia))})</span>`;}
+function lastLine(s){
+  if(waNueva(s)){const w=s.ultWA,a=s.ultGestionApp;return `<span class="pill info">Automático · leído de WhatsApp</span> <b>${cuandoHTML(w.dia,w.hora)} · ha contestado</b> — “${esc(w.txt)}”`+(a?`<br><span class="meta">Antes, en la app: ${cuandoHTML(a.dia,horaGestion(s,a))} · ${esc(a.por)} · ${esc(etiqueta(a.codigo,a.fechaRef,a.prox||""))}</span>`:"");}
+  const a=s.ultGestionApp, o=s.ultGestionOSE;
+  const oLine=o?`<b>OSE ${cuandoHTML(o.fecha,o.hora)} · ${esc(o.emp)}${o.motivo?" · "+esc(o.motivo):""}</b> — ${esc(o.txt)}`:"";
+  const aLine=a?`<b>${cuandoHTML(a.dia,horaGestion(s,a))} · ${esc(a.por)} · ${esc(etiqueta(a.codigo,a.fechaRef,a.prox||(s.mismoCaso?s.prox:"")))}</b>${a.nota?" — "+esc(a.nota):""}`:"";
+  if(a&&respuesta(s)) return `${oLine}<br><span class="meta">Antes, en la app: ${aLine}</span>`;
+  if(a) return aLine;
+  if(o&&o.fecha>s.ultEntreno) return oLine;
+  return "Sin gestiones registradas.";
+}
+function waText(s,w){
+  const n=nombreCorto(s.nombre), d=diasSin(s), yo=w||(lang==="ca"?"l'equip":"el equipo");
+  if(lang==="ca"){
+    if(d<=7) return `Hola ${n}! Sóc ${yo}. Aquesta setmana t'hem trobat a faltar al circuit. Tot bé? Ja saps com sent de bé no perdre el ritme. Quin dia et veiem?`;
+    if(d<=15) return `Hola ${n}! Sóc ${yo}. Fa un parell de setmanes que no et veiem i volíem saber com estàs. L'important és tornar-hi: amb mitja hora ja notes el canvi en energia i en l'ànim. Quin dia et veiem aquesta setmana?`;
+    if(s.mismoCaso&&["SALUD","FUERA"].includes(s.ultGestionApp?.codigo)) return `Hola ${n}! Sóc ${yo}. Com va tot? Ens recordem de tu. Quan puguis tornar, aquí t'esperem. Quin dia creus que t'anirà bé?`;
+    if(d<=30) return `Hola ${n}! Sóc ${yo}. Et trobem a faltar. Sé que de vegades la vida es complica, per això et proposo una revisió del teu entrenament per tornar al teu ritme, sense presses. Quin dia et va bé?`;
+    return `Hola ${n}! Sóc ${yo}. Fa temps que no coincidim i ens recordem de tu. Et proposem tornar amb una revisió de l'entrenament adaptada a com estàs ara: la força és de les millors coses que pots fer pel teu cos i pel teu cap. Quin dia et va bé passar?`;
+  }
+  if(d<=7) return `Hola ${n}! Soy ${yo}. Esta semana te hemos echado de menos en el circuito. ¿Todo bien? Ya sabes lo bien que sienta no perder el ritmo. ¿Qué día te vemos?`;
+  if(d<=15) return `Hola ${n}! Soy ${yo}. Hace un par de semanas que no te vemos y queríamos saber cómo estás. Lo importante es retomar: con media hora ya notas el cambio en energía y en el ánimo. ¿Qué día te vemos esta semana?`;
+  const motivo=s.mismoCaso&&["SALUD","FUERA"].includes(s.ultGestionApp?.codigo);
+  if(motivo) return `Hola ${n}! Soy ${yo}. ¿Cómo va todo? Nos acordamos de ti. Cuando puedas volver, aquí te esperamos. ¿Qué día crees que te irá bien?`;
+  if(d<=30) return `Hola ${n}! Soy ${yo}. Te echamos de menos. Sé que a veces la vida se complica, por eso te propongo una revisión de tu entreno para volver a tu ritmo, sin prisas. ¿Qué día te va bien?`;
+  return `Hola ${n}! Soy ${yo}. Hace tiempo que no coincidimos y nos acordamos de ti. Te proponemos volver con una revisión de entreno adaptada a cómo estás ahora: la fuerza es de lo mejor que puedes hacer por tu cuerpo y por tu cabeza. ¿Qué día te va bien pasarte?`;
+}
+function mensajeDe(s){
+  const yo=me||(lang==="ca"?"l'equip":"el equipo"), n=nombreCorto(s.nombre);
+  if(msgEdits[s.num]!=null) return msgEdits[s.num];
+  const a=s.ultGestionApp, ca=lang==="ca";
+  if(s.mismoCaso&&a&&!respuesta(s)){
+    const q=cuando(a.dia), fr=a.fechaRef&&a.fechaRef<=today()?a.fechaRef:"";
+    if(a.codigo==="SIN RESPUESTA"){
+      if(ca) return (s.intentos||0)>=2
+        ? `Hola ${n}! Sóc ${yo}. T'he escrit aquests dies i no et vull atabalar: només saber que estàs bé. Quan et vagi bé, digue'm alguna cosa i et guardo el lloc.`
+        : `Hola ${n}! Sóc ${yo} un altre cop. T'he escrit ${q} i volia assegurar-me que t'havia arribat. Va tot bé? Quin dia et veiem?`;
+      return (s.intentos||0)>=2
+        ? `Hola ${n}! Soy ${yo}. Te he escrito estos días y no quiero agobiarte: solo saber que estás bien. Cuando te vaya bien, dime algo y te guardo el hueco.`
+        : `Hola ${n}! Soy ${yo} otra vez. Te escribí ${q} y quería asegurarme de que te llegó. ¿Va todo bien? ¿Qué día te vemos?`;
+    }
+    // Seguimiento de lo que ya nos dijo: con el día real en que habló y el día que dio
+    if(a.codigo==="VUELVE"&&fr) return ca
+      ? `Hola ${n}! Sóc ${yo}. ${cap(q)} ens vas dir que vindries ${diaCon(fr)} i no t'hem vist. Va tot bé? Quin dia et veiem?`
+      : `Hola ${n}! Soy ${yo}. ${cap(q)} nos dijiste que vendrías ${diaCon(fr)} y no te hemos visto. ¿Va todo bien? ¿Qué día te vemos?`;
+    if(a.codigo==="SIN FECHA") return ca
+      ? `Hola ${n}! Sóc ${yo}. ${cap(q)} vam parlar i vam quedar de tornar-ne a parlar. Com ho tens? Quin dia et veiem?`
+      : `Hola ${n}! Soy ${yo}. ${cap(q)} hablamos y quedamos en volver a hablar. ¿Cómo lo tienes? ¿Qué día te vemos?`;
+    if(a.codigo==="SALUD") return ca
+      ? `Hola ${n}! Sóc ${yo}. ${cap(q)} ens vas explicar que no estaves bé. Com et trobes? Quan puguis tornar, aquí t'esperem. Quin dia creus que t'anirà bé?`
+      : `Hola ${n}! Soy ${yo}. ${cap(q)} nos contaste que no estabas bien. ¿Cómo te encuentras? Cuando puedas volver, aquí te esperamos. ¿Qué día crees que te irá bien?`;
+    if(a.codigo==="FUERA"&&fr) return ca
+      ? `Hola ${n}! Sóc ${yo}. Ens vas dir que tornaves ${diaCon(fr)}. Esperem que hagi anat molt bé! Quin dia et veiem?`
+      : `Hola ${n}! Soy ${yo}. Nos dijiste que volvías ${diaCon(fr)}. ¡Esperamos que haya ido muy bien! ¿Qué día te vemos?`;
+  }
+  const m=mensajes[s.num+"-"+s.ultEntreno];
+  if(!m) return waText(s,me);
+  const t=lang==="ca"&&m.textoCa?m.textoCa:m.texto;
+  return sinClub(String(t||"").replaceAll("{yo}",yo));
+}
+// Las socias tienen nuestro número guardado: el mensaje no dice "de Curves Sant Cugat"
+function sinClub(t){return String(t).replace(/,?\s*(de|des de)\s+Curves\s+Sant\s+Cugat/gi,"");}
+function waHref(s,txt){return `https://wa.me/34${s.tel}?text=${encodeURIComponent(txt)}`;}
+// Etiqueta del resultado: siempre con fecha (la que dio la socia o, si no hay, la del próximo seguimiento) — Eva, 10/11/2026
+function etiqueta(codigo,fechaRef,prox){const f=fechaRef||prox;return f?`${codigo} ${fmt(f)}`:codigo;}
+function oseText(s,g){
+  const prox=g.prox?`Próx ${fmt(g.prox)}`:"Próx -";
+  const wa=g.mensaje?` | WhatsApp enviado: «${String(g.mensaje).replace(/\s+/g," ").trim()}»`:"";
+  return `MIA | ${g.tramo}d | ${etiqueta(g.codigo,g.fechaRef,g.prox)} | ${g.por} | ${g.canal} | ${prox} | ${g.nota||"-"}${wa}`;
+}
+function mensajeEnviado(s,canal){
+  if(msgSent[s.num]) return msgSent[s.num];
+  if(canal!=="WhatsApp") return "";
+  const t=document.getElementById("m"+s.num); return t?t.value.trim():"";
+}
+function esDeEva(s){return !!s.escalada||ownerOf(s)==="Eva";}
+function mesesEntre(a,b){if(!a)return null;const x=parseISO(a),y=parseISO(b);let m=(y.getFullYear()-x.getFullYear())*12+(y.getMonth()-x.getMonth());if(y.getDate()<x.getDate())m--;return Math.max(0,m);}
+function fmtL(s){if(!s)return "—";const [y,m,d]=s.slice(0,10).split("-");return d+"/"+m+"/"+y;}
+function mesTxt(n){return n===null?"":n===1?"1 mes":n+" meses";}
+// Baja anticipada del pack de 12 meses: regularización de 11 € por mes disfrutado (Eva).
+// Meses disfrutados = recibos ya pasados desde el inicio de la oferta (hasta el próximo recibo; si no hay, hasta hoy contando el mes en curso).
+// Regularización por mes disfrutado según la cuota (Eva, 10/11/2026): 69 € → 16 €; resto → 11 €
+const REG_MES=11; const REG_POR_CUOTA={69:16};
+function regMes(c){const q=cuotaNum(c);return REG_POR_CUOTA[q]??REG_MES;}
+function regularizacion(c){
+  if(!c||!/12/.test(c.oferta||"")||!c.inicioOferta) return null;
+  let m=c.proximoPago&&c.proximoPago>c.inicioOferta?mesesEntre(c.inicioOferta,c.proximoPago):mesesEntre(c.inicioOferta,today())+1;
+  if(m>=12) return {meses:m,importe:0,cumplido:true};
+  m=Math.max(1,m); return {meses:m,importe:m*regMes(c),cumplido:false};
+}
+function regTxt(c){const r=regularizacion(c);if(!r)return "No es pack de 12 meses: sin regularización";if(r.cumplido)return "Ya ha cumplido los 12 meses: sin regularización";return `${r.meses} ${r.meses===1?"mes disfrutado":"meses disfrutados"} × ${regMes(c)} € = ${r.importe} € a abonar`;}
+// Baja: aviso por escrito con 15 días de antelación al próximo recibo (contrato, tarifa con domiciliación)
+const PREAVISO=15;
+function eur(n){return (Math.round(n*100)/100).toLocaleString("es-ES",{minimumFractionDigits:0,maximumFractionDigits:2})+" €";}
+function cuotaNum(c){return parseFloat(String(c?.importe||"0").replace(/\./g,"").replace(",","."))||0;}
+function addMonthsISO(s,n){const d=parseISO(s);const day=d.getDate();d.setDate(1);d.setMonth(d.getMonth()+n);const last=new Date(d.getFullYear(),d.getMonth()+1,0).getDate();d.setDate(Math.min(day,last));return iso(d);}
+// Escenarios económicos para tramitar la baja
+function escenarios(c){
+  const t=today(), cuota=cuotaNum(c), pack=/12/.test(c.oferta||"")&&!!c.inicioOferta;
+  let rec=c.proximoPago||""; while(rec&&rec<=t) rec=addMonthsISO(rec,1); // próximo recibo pendiente
+  if(!rec) return null;
+  const limite=addDaysISO(rec,-PREAVISO), aTiempo=t<=limite;
+  const recBaja=aTiempo?rec:addMonthsISO(rec,1); // primer recibo que ya no se cobra
+  const recibosAntes=aTiempo?0:1; // recibos que aún pagará si avisa hoy
+  const res={rec,limite,aTiempo,recBaja,cuota,pack};
+  if(!pack){res.hoy={coste:recibosAntes*cuota,txt:`Sin regularización (no es pack de 12 meses).${recibosAntes?` Paga el recibo del ${fmtL(rec)}.`:""}`};res.mejor="hoy";return res;}
+  const mHoy=Math.max(1,mesesEntre(c.inicioOferta,recBaja)); // meses disfrutados hasta la baja efectiva
+  const cumple=addMonthsISO(c.inicioOferta,12);
+  if(mHoy>=12){res.hoy={coste:recibosAntes*cuota,txt:`Ya cumple los 12 meses: sin regularización.${recibosAntes?` Paga el recibo del ${fmtL(rec)}.`:""}`};res.mejor="hoy";return res;}
+  const regHoy=mHoy*regMes(c);
+  res.hoy={coste:regHoy+recibosAntes*cuota,meses:mHoy,txt:`Regularización ${mHoy} ${mHoy===1?"mes":"meses"} × ${regMes(c)} € = ${eur(regHoy)}${recibosAntes?` + recibo del ${fmtL(rec)} (${eur(cuota)})`:""}`};
+  const pendientes=12-mHoy+recibosAntes; // recibos hasta completar los 12 meses
+  res.espera={coste:pendientes*cuota,txt:`Pagar ${pendientes} ${pendientes===1?"recibo":"recibos"} más hasta cumplir 12 meses (${fmtL(cumple)}), sin regularización, y avisar antes del ${fmtL(addDaysISO(cumple,-PREAVISO))}`};
+  res.mejor=res.hoy.coste<=res.espera.coste?"hoy":"espera";
+  return res;
+}
+// Condiciones leídas de la ficha de OSE (solo MIA de Eva): para informar de cómo tramitar la baja
+function condHTML(s){
+  const c=s.condiciones, t=today();
+  if(!c) return `<div class="cond"><span class="h">Condiciones en OSE</span><span class="x">Aún no leídas. Se leen de OSE en la próxima sincronización.</span></div>`;
+  const ma=mesesEntre(c.inicioCompromiso,t), mo=mesesEntre(c.inicioOferta,t);
+  const e=escenarios(c); const salud=s.mismoCaso&&s.ultGestionApp?.codigo==="SALUD";
+  const pre=!e?"—":e.aTiempo?`Si avisa por escrito hasta el ${esc(fmtL(e.limite))}, el recibo del ${esc(fmtL(e.rec))} ya no se cobra`:`Ya no llega a los 15 días para el recibo del ${esc(fmtL(e.rec))} (se cobra). Avisando hoy, la baja es para el recibo del ${esc(fmtL(e.recBaja))}`;
+  let rec="—";
+  if(e){
+    if(!e.espera) rec=`Tramitar la baja ya. Coste: ${esc(eur(e.hoy.coste))}. ${esc(e.hoy.txt)}`;
+    else rec=(e.mejor==="hoy"
+      ?`<b>Le sale mejor darse de baja ya:</b> ${esc(eur(e.hoy.coste))} (${esc(e.hoy.txt)}). Esperar a cumplir los 12 meses le costaría ${esc(eur(e.espera.coste))}.`
+      :`<b>Le sale mejor esperar a cumplir los 12 meses:</b> ${esc(eur(e.espera.coste))} (${esc(e.espera.txt)}). Darse de baja ya le costaría ${esc(eur(e.hoy.coste))} (${esc(e.hoy.txt)}).`);
+  }
+  return `<div class="cond"><span class="h">Baja definitiva · condiciones en OSE (leído ${esc(fmt(c.leido))})</span>
+    <span>Oferta</span><b>${esc(c.oferta||"—")} · ${esc(c.importe||"—")} €/mes</b>
+    <span>Meses de alta</span><b>${ma!==null?mesTxt(ma):"—"} (desde ${esc(fmtL(c.inicioCompromiso))})${c.inicioOferta&&c.inicioOferta!==c.inicioCompromiso?` · oferta actual desde ${esc(fmtL(c.inicioOferta))} (${mesTxt(mo)})`:""}</b>
+    <span>Regularización</span><b>${e&&e.hoy&&e.hoy.meses?`${e.hoy.meses} meses disfrutados × ${regMes(c)} € = ${esc(eur(e.hoy.meses*regMes(c)))}`:esc(regTxt(c))}</b>
+    <span>Preaviso 15 días</span><b>${pre}</b>
+    <span>Recomendación</span><b style="font-weight:600">${rec}</b>
+    ${e&&e.espera?`<span>Para ahorrarle la regularización</span><b style="font-weight:600">${salud?"<b>Su último motivo fue de salud:</b> ":""}si la baja es por enfermedad o lesión suya, enfermedad o accidente grave de un familiar (hasta 2º grado) o fallecimiento, y lo acredita con certificado médico oficial, no paga regularización ni tiene que avisar con 15 días. También puede pasar la regularización a una amiga que se dé de alta en el club: entonces no la paga ella.</b>`:""}
+    <span class="x">Contrato (condiciones generales): 3.f compromiso de 12 mensualidades con descuento; si se da de baja antes, abona los descuentos disfrutados (${regMes(c)} € por mes) y puede transferirlos a una amiga que se dé de alta. 10.a la baja se pide por escrito con 15 días naturales de antelación al inicio de la mensualidad (el día de pago). 10.c-d sin preaviso ni regularización por fuerza mayor acreditada con certificado médico oficial o de defunción. 12 por fuerza mayor también puede pedir suspensión temporal de 1 a 2 meses.</span></div>`;
+}
+function computeNext(s,codigo,fechaRef){
+  const t=today(); let prox=t, escalada=false, intentos=s.intentos||0;
+  if(codigo==="SIN RESPUESTA"){intentos+=1;prox=nextWorkdayFrom(t);if(intentos>=3)escalada=true;}
+  else intentos=0;
+  if(codigo==="VUELVE") prox=nextWorkdayFrom(fechaRef);
+  if(codigo==="FUERA") prox=nextWorkdayFrom(fechaRef);
+  if(codigo==="SALUD") prox=fechaRef?fechaRef:addWorkdays(t,5);
+  if(codigo==="SIN FECHA") prox=fechaRef?fechaRef:addWorkdays(t,2);
+  if(codigo==="RIESGO BAJA"||codigo==="ESCALAR"){escalada=true;prox=t;}
+  if(codigo==="BAJA DEFINITIVA"){escalada=true;prox=fechaRef||addWorkdays(t,5);}
+  return {prox,escalada,intentos};
+}
+
+function cardHTML(s,mode){
+  const d=diasSin(s), ds=dueState(s), tr=tramoOf(d);
+  const flags=[];
+  if(s.escalada) flags.push('<span class="pill bad">Para Eva</span>');
+  if(s.pb) flags.push('<span class="pill bad">En proceso de baja</span>');
+  if(s.nc) flags.push('<span class="pill bad">No contactar (OSE)</span>');
+  if(s.estado==="excluida") flags.push('<span class="pill warn">Sacada de la lista</span>');
+  if(d<MIN_DIAS) flags.push(`<span class="pill info">${d} días: aún no entra en MIA</span>`);
+  if(s.rp) flags.push('<span class="pill info">RP / empleada</span>');
+  if(respuesta(s)) flags.push(`<span class="pill ok">${waNueva(s)?"Ha contestado por WhatsApp (leído automáticamente)":"Ha contestado (apuntado en OSE)"}: apunta el resultado</span>`);
+  if((s.intentos||0)>0&&!respuesta(s)) flags.push(`<span class="pill warn">${s.intentos} sin respuesta</span>`);
+  if(ds==="vencida") flags.push(`<span class="pill bad">Atrasada desde ${esc(fmt(s.prox))} (${daysBetween(s.prox,today())} ${daysBetween(s.prox,today())===1?"día":"días"})</span>`);
+  else if(ds==="futuro") flags.push(`<span class="pill ok">Próx. ${esc(fmt(s.prox))}</span>`);
+  const tel=s.tel||"";
+  const msg=mensajeDe(s); const wa=tel?waHref(s,msg):"";
+  const isOpen=openForm===s.num;
+  return `<article class="card ${ds}" data-num="${esc(s.num)}">
+    <div class="row"><span class="name">${esc(String(s.nombre).toLowerCase())}</span><span class="num">#${esc(s.num)}</span><span class="pill">${tr} días</span>${mode==="todas"?`<span class="pill info">${esc(s.escalada?"Eva":ownerOf(s))}</span>`:""}</div>
+    <div class="meta">${d} días sin venir · último entreno ${esc(fmt(s.ultEntreno))}${s.notaFicha?` · ficha: “${esc(s.notaFicha)}”`:""}</div>
+    ${flags.length?`<div class="row">${flags.join("")}</div>`:""}
+    <div class="last">${lastLine(s)}</div>
+    ${sugBoxHTML(s)}
+    ${tel?`<div class="msgbox"><label class="f" for="m${esc(s.num)}">Mensaje de WhatsApp (puedes retocarlo)</label><textarea id="m${esc(s.num)}" data-msg="${esc(s.num)}" rows="4">${esc(msg)}</textarea><div class="actions"><button class="btn" data-copymsg="${esc(s.num)}">Copiar mensaje</button><a class="btn${d<=15?" primary":""}" data-wa="${esc(s.num)}" href="${esc(wa)}" target="_blank" rel="noopener">Abrir en WhatsApp</a>${sampleFn?`<button class="btn" type="button" data-tr="${esc(s.num)}" data-to="ca">Al català</button><button class="btn" type="button" data-tr="${esc(s.num)}" data-to="es">Al castellano</button>`:""}</div></div>`:""}
+    <div class="actions">
+      ${tel?`<span class="btn tel" title="Teléfono">${esc(tel)}</span><button class="btn" data-copy="${esc(tel)}">Copiar</button>${d>15?`<a class="btn" href="tel:+34${esc(tel)}">Llamar</a>`:""}`:'<span class="pill bad">Sin teléfono válido en OSE</span>'}
+      <button class="btn primary" data-open="${esc(s.num)}" aria-expanded="${isOpen}">${isOpen?"Cerrar":"Registrar gestión"}</button>
+    </div>
+    ${isOpen?formHTML(s):""}
+  </article>`;
+}
+function formHTML(s){
+  const id="f"+s.num;
+  return `<form class="reg" id="${id}" data-num="${esc(s.num)}" novalidate>
+    ${esDeEva(s)?condHTML(s):""}
+    <div class="codes" role="group" aria-label="Resultado">${CODES.filter(c=>!c.soloEva||esDeEva(s)).map(c=>`<button type="button" class="code" data-code="${c.k}" aria-pressed="false"><b>${c.t}</b><small>${c.d}</small></button>`).join("")}</div>
+    <div class="grid2">
+      <label class="f">Canal<select id="${id}-canal">${CANALES.map(c=>`<option ${c===(diasSin(s)<=15?"WhatsApp":"Llamada")?"selected":""}>${c}</option>`).join("")}</select></label>
+      <label class="f" id="${id}-fwrap" hidden><span id="${id}-flabel">Fecha</span><input type="date" id="${id}-fecha" min="${today()}"></label>
+      <label class="f" id="${id}-segwrap" hidden>Próximo seguimiento (tras el WhatsApp)<input type="date" id="${id}-seg" min="${nextWorkdayFrom(today())}"></label>
+    </div>
+    <label id="${id}-tramwrap" hidden style="display:flex;gap:8px;align-items:flex-start;background:var(--warn-bg);border-radius:10px;padding:10px 12px;font-weight:700;cursor:pointer"><input type="checkbox" id="${id}-tram" style="margin-top:3px;width:18px;height:18px;flex:none"><span>Baja ya tramitada en OSE: cerrar el caso<br><small style="font-weight:600;color:var(--muted)">Sale de todas las listas y no se le hace más seguimiento. Déjalo sin marcar si aún tiene que tramitarla (por ejemplo, si espera el enlace o el correo).</small></span></label>
+    <label class="f">Nota corta (máx. ${NOTA_MAX}) <textarea id="${id}-nota" maxlength="${NOTA_MAX}" placeholder="Ej.: gripe, vuelve el lunes por la tarde"></textarea></label>
+    <div class="ose" id="${id}-ose">Elige un resultado para ver cómo quedará en OSE.</div>
+    <div class="err" id="${id}-err" hidden></div>
+    <div class="actions"><button class="btn primary" type="submit" id="${id}-save">Guardar</button><button class="btn" type="button" data-open="${esc(s.num)}">Cancelar</button></div>
+  </form>`;
+}
+
+function riesgoOSE(r){return `Conversación WhatsApp ${fmt(r.dia)}${r.hora?" "+r.hora:""}: «${String(r.txt||"").replace(/\s+/g," ").trim()}». Posible riesgo de baja (${(r.palabras||[]).join(", ")}).`;}
+function riesgoCard(r){
+  const nom=r.nombre||r.nombreWA||r.tel;
+  return `<article class="card riesgo" data-riesgo="${esc(r.id)}">
+    <div class="row"><span class="name">${esc(String(nom).toLowerCase())}</span>${r.num?`<span class="num">#${esc(r.num)}</span>`:""}${(r.palabras||[]).map(p=>`<span class="pill warn">${esc(p)}</span>`).join("")}</div>
+    <div class="meta">WhatsApp del ${esc(fmt(r.dia))}${r.hora?" a las "+esc(r.hora):""} · <span class="tel">${esc(r.tel)}</span>${r.nombreWA&&r.nombreWA!==r.nombre?` · en WhatsApp: ${esc(r.nombreWA)}`:""}</div>
+    <div class="quote">“${esc(r.txt)}”</div>
+    <div class="actions">
+      <button class="btn" type="button" data-rcopy="${esc(r.id)}">Copiar texto para OSE</button>
+      <a class="btn" href="https://wa.me/34${esc(r.tel)}" target="_blank" rel="noopener">Abrir su chat</a>
+      <button class="btn primary" type="button" data-rok="${esc(r.id)}">Ya apuntado en OSE</button>
+      <button class="btn" type="button" data-rno="${esc(r.id)}">No es nada</button>
+    </div></article>`;
+}
+function riesgosBlock(){
+  const list=riesgos.filter(r=>r.estado==="pendiente").sort((a,b)=>(b.dia+b.hora).localeCompare(a.dia+a.hora));
+  if(!list.length) return "";
+  return `<h2>Ojo: posible riesgo <span class="num">(${list.length})</span></h2>
+    <p class="hint">Socias que <b>no están en la lista MIA</b> y han escrito por WhatsApp algo que suena a riesgo de baja (horario, no llega, dinero, mudanza, salud, dejarlo…). Lo leo cada hora del último mensaje de cada chat. Quien lo vea: apúntalo en el Histórico de OSE como “Conversación” (el botón copia el texto) y pulsa <b>Ya apuntado en OSE</b>. Si no es nada, pulsa <b>No es nada</b>.</p>
+    <div class="list">${list.map(riesgoCard).join("")}</div>`;
+}
+function viewHoy(){
+  if(!me) return `<div class="empty">Elige arriba quién eres para ver tu lista de hoy.</div>`;
+  const mine=socias.filter(s=>isMine(s,me));
+  const byDias=(a,b)=>diasSin(a)-diasSin(b);
+  const due=mine.filter(s=>dueState(s)!=="futuro");
+  const atrasadas=due.filter(s=>dueState(s)==="vencida").sort((a,b)=>(a.prox||"").localeCompare(b.prox||"")||byDias(a,b));
+  const contestadas=due.filter(s=>respuesta(s)).sort(byDias);
+  const seguimiento=due.filter(s=>dueState(s)==="hoy"&&!respuesta(s)&&s.mismoCaso&&s.ultGestionApp).sort(byDias);
+  const nuevas=due.filter(s=>dueState(s)==="hoy"&&!respuesta(s)&&!(s.mismoCaso&&s.ultGestionApp)).sort(byDias);
+  const later=mine.filter(s=>dueState(s)==="futuro").sort((a,b)=>a.prox.localeCompare(b.prox));
+  const t=today(); const hechas=gestiones.filter(g=>g.dia===t&&g.por===me);
+  const block=(title,hint,list)=>list.length?`<h2>${title} <span class="num">(${list.length})</span></h2><p class="hint">${hint}</p><div class="list">${list.map(s=>cardHTML(s,"hoy")).join("")}</div>`:"";
+  const nRiesgo=riesgos.filter(r=>r.estado==="pendiente").length;
+  return `<div class="stats">
+      ${nRiesgo?`<div class="stat alert"><div class="n">${nRiesgo}</div><div class="l">Ojo: posible riesgo</div></div>`:""}
+      ${contestadas.length?`<div class="stat"><div class="n">${contestadas.length}</div><div class="l">Han contestado</div></div>`:""}
+      <div class="stat ${atrasadas.length?"alert":""}"><div class="n">${atrasadas.length}</div><div class="l">Atrasadas</div></div>
+      <div class="stat"><div class="n">${seguimiento.length}</div><div class="l">Seguimiento de hoy</div></div>
+      <div class="stat"><div class="n">${nuevas.length}</div><div class="l">MIA nuevas de hoy</div></div>
+      <div class="stat"><div class="n">${hechas.length}</div><div class="l">Gestiones hechas hoy</div></div>
+    </div>
+    <p class="hint">${me==="Susana"?"De 6 a 15 días: manda el WhatsApp directamente, sin llamar. Si no contesta, marca “Sin respuesta”: mañana vuelve a salir aquí.":"Desde 16 días: llamada primero. Si no coge, WhatsApp en el momento y marca “Sin respuesta”: mañana vuelve a salir aquí."} Lo que guardes lo paso yo al Histórico de OSE.</p>
+    ${(()=>{const n=sinCa(mine).length;return lang==="ca"&&sampleFn&&n?`<div class="script"><p>${n} ${n===1?"mensaje personal sigue":"mensajes personales siguen"} en castellano. <button class="btn primary" type="button" data-trall="1" ${trAll?"disabled":""}>${trAll?"Traduciendo…":"Pasarlos al català"}</button></p></div>`:"";})()}
+    ${riesgosBlock()}
+    ${due.length?"":`<div class="empty">Nada pendiente para hoy, ${esc(me)}. Buen trabajo.</div>`}
+    ${block("Han contestado","Contestaron después de vuestra última gestión: su respuesta de WhatsApp ya está en el recuadro verde (la leo cada hora). Pulsa “Sugerir respuesta”, envíala y registra el resultado.",contestadas)}
+    ${block("Atrasadas","Tocaban otro día y no se hicieron. Van primero.",atrasadas)}
+    ${block("Seguimiento","Las que ayer no contestaron y las que tenían cita para hoy: comprueba y vuelve a llamar.",seguimiento)}
+    ${block("MIA nuevas de hoy","Han entrado hoy en la lista o todavía nadie las ha llamado.",nuevas)}
+    ${later.length?`<details class="script"><summary>Programadas para otro día (${later.length})</summary><div class="list" style="margin-top:10px">${later.map(s=>cardHTML(s,"hoy")).join("")}</div></details>`:""}`;
+}
+function viewBuscar(){
+  const q=nrm(buscar.trim()); const qd=q.replace(/\D/g,"");
+  const rows=socias.filter(s=>diasSin(s)>=MIN_DIAS).filter(s=>nrm(s.nombre).includes(q)||String(s.num)===q.trim()||(qd.length>=4&&String(s.tel||"").includes(qd)))
+    .sort((a,b)=>nrm(a.nombre).localeCompare(nrm(b.nombre)));
+  return `<h2>Resultados para “${esc(buscar.trim())}” <span class="num">(${rows.length})</span></h2>
+    <p class="hint">Busca en todas las socias de la última foto de OSE, estén para hoy, programadas, con otra entrenadora, en proceso de baja o ya gestionadas. Puedes registrar la gestión desde aquí (por ejemplo, cuando contesta al WhatsApp). Borra la búsqueda para volver a tu lista.</p>
+    <div class="list">${rows.slice(0,50).map(s=>cardHTML(s,"todas")).join("")||'<div class="empty">No encuentro ninguna socia así entre las MIA (6 días o más sin venir). Si ha entrenado hace menos de 6 días, no está en la lista.</div>'}</div>
+    ${rows.length>50?`<p class="hint">Mostrando 50 de ${rows.length}. Escribe más letras.</p>`:""}`;
+}
+function viewTodas(){
+  const q=filtro.q.trim().toLowerCase();
+  let rows=socias.filter(s=>contactable(s));
+  if(q) rows=rows.filter(s=>String(s.nombre).toLowerCase().includes(q)||String(s.num)===q);
+  if(filtro.owner) rows=rows.filter(s=>(s.escalada?"Eva":ownerOf(s))===filtro.owner);
+  if(filtro.tramo) rows=rows.filter(s=>tramoOf(diasSin(s))===filtro.tramo);
+  if(filtro.cod) rows=rows.filter(s=>(s.ultGestionApp?.codigo||"SIN GESTIÓN")===filtro.cod);
+  rows.sort((a,b)=>diasSin(a)-diasSin(b));
+  const open=socias.filter(contactable);
+  const nc=socias.filter(s=>s.estado==="abierta"&&s.nc&&diasSin(s)>=MIN_DIAS).length;
+  const by=(f)=>{const m={};open.forEach(s=>{const k=f(s);m[k]=(m[k]||0)+1;});return m;};
+  const bo=by(s=>s.escalada?"Eva":ownerOf(s)), bt=by(s=>tramoOf(diasSin(s)));
+  return `<div class="stats">
+      ${TEAM.map(w=>`<div class="stat"><div class="n">${bo[w]||0}</div><div class="l">${w}</div></div>`).join("")}
+    </div>
+    <p class="hint">${open.length} socias MIA abiertas · 6-15 d: ${bt["6-15"]||0} · 16-30 d: ${bt["16-30"]||0} · +30 d: ${bt["31+"]||0} · ${nc} marcadas en OSE como “no contactar” · ${socias.filter(s=>s.estado==="abierta"&&!s.nc&&s.pb&&diasSin(s)>=MIN_DIAS).length} en proceso de baja (no se gestionan aquí).</p>
+    <div class="filters">
+      <input type="search" id="fq" placeholder="Buscar nombre o nº" value="${esc(filtro.q)}" aria-label="Buscar">
+      <select id="fo" aria-label="Entrenadora"><option value="">Todas</option>${TEAM.map(w=>`<option ${filtro.owner===w?"selected":""}>${w}</option>`).join("")}</select>
+      <select id="ft" aria-label="Tramo"><option value="">Tramo</option>${["6-15","16-30","31+"].map(t=>`<option ${filtro.tramo===t?"selected":""}>${t}</option>`).join("")}</select>
+      <select id="fc" aria-label="Resultado"><option value="">Resultado</option>${["SIN GESTIÓN",...CODES.map(c=>c.k)].map(c=>`<option ${filtro.cod===c?"selected":""}>${c}</option>`).join("")}</select>
+    </div>
+    <div class="list">${rows.slice(0,150).map(s=>cardHTML(s,"todas")+(me==="Eva"?ownerCtl(s):"")).join("")||'<div class="empty">Ninguna socia con estos filtros.</div>'}</div>
+    ${rows.length>150?`<p class="hint">Mostrando 150 de ${rows.length}. Afina con los filtros.</p>`:""}`;
+}
+function ownerCtl(s){
+  return `<div class="row" style="margin:-4px 0 6px 6px"><label class="f" style="flex-direction:row;align-items:center;gap:6px">Asignar a
+    <select data-assign="${esc(s.num)}" style="width:auto"><option value="">Automático (${ownerOf({...s,ownerManual:""})})</option>${TEAM.map(w=>`<option ${s.ownerManual===w?"selected":""}>${w}</option>`).join("")}</select></label>
+    <button class="btn" data-exclude="${esc(s.num)}">Sacar de la lista</button></div>`;
+}
+
+function kpis(){
+  const t=today(); const cur=socias.filter(x=>x.estado!=="excluida"&&!x.nc&&!x.pb&&diasSin(x)>=MIN_DIAS);
+  // 1) Contactadas en 48 h: casos abiertos en los últimos 21 días que ya han cumplido 2 días hábiles
+  const k1=cur.map(x=>[x.abiertaDesde>desdeGestion(x)?x.abiertaDesde:desdeGestion(x),x.primeraGestion]).concat(vueltas.map(v=>[v.abiertaDesde,v.primeraGestion]))
+    .filter(([a])=>a&&daysBetween(a,t)<=21&&addWorkdays(a,2)<=t);
+  const aTiempo=k1.filter(([a,p])=>p&&p<=addWorkdays(a,2)).length;
+  // 2) Seguimiento al día
+  const abiertas=cur; const venc=abiertas.filter(x=>x.prox&&x.prox<t).length;
+  // 3) Vuelven en 14 días tras la primera gestión
+  const b3=vueltas.filter(v=>v.primeraGestion&&daysBetween(v.primeraGestion,t)<=60);
+  const vuelven=b3.filter(v=>daysBetween(v.primeraGestion,v.vueltaFecha)<=14).length;
+  const b3open=cur.filter(x=>x.primeraGestion&&daysBetween(x.primeraGestion,t)>=14&&daysBetween(x.primeraGestion,t)<=60).length;
+  // 4) Riesgo de baja
+  const riesgo=abiertas.filter(x=>x.mismoCaso&&["RIESGO BAJA","BAJA DEFINITIVA"].includes(x.ultGestionApp?.codigo)).length;
+  return {ventana:k1.length,aTiempo,abiertas:abiertas.length,venc,base:b3.length+b3open,vuelven,riesgo};
+}
+// Tasa de éxito MIA (Eva, 10/11/2026): de las socias que han recibido al menos una gestión (primera gestión en los últimos 60 días),
+// cuántas han vuelto a entrenar después de esa gestión. Las que siguen sin venir cuentan como pendientes.
+const EXITO_DIAS=60;
+function exito(w){
+  const t=today();
+  const vg=vueltas.filter(v=>v.primeraGestion&&daysBetween(v.primeraGestion,t)<=EXITO_DIAS&&v.vueltaFecha>=v.primeraGestion&&(!w||v.por===w));
+  const pend=socias.filter(s=>s.mismoCaso&&s.primeraGestion&&s.estado!=="excluida"&&diasSin(s)>=MIN_DIAS&&daysBetween(s.primeraGestion,t)<=EXITO_DIAS&&(!w||(s.ultGestionApp?.por||"")===w));
+  const solas=w?0:vueltas.filter(v=>!v.primeraGestion&&daysBetween(v.vueltaFecha,t)<=EXITO_DIAS).length;
+  const dias=vg.map(v=>daysBetween(v.primeraGestion,v.vueltaFecha)).sort((a,b)=>a-b);
+  const mediana=dias.length?dias[Math.floor((dias.length-1)/2)]:null;
+  return {vuelven:vg.length,gestionadas:vg.length+pend.length,pendientes:pend.length,solas,mediana,pct:pct(vg.length,vg.length+pend.length)};
+}
+function exitoCard(){
+  const e=exito();
+  return `<div class="kpi hero"><div class="t">Tasa de éxito MIA</div><div class="v">${e.pct===null?"—":e.pct+"%"}</div><div class="bar"><i style="width:${e.pct??0}%"></i></div>
+    <div class="sub"><span><b>${e.vuelven}</b> han vuelto tras la gestión</span><span><b>${e.gestionadas}</b> socias gestionadas</span><span><b>${e.pendientes}</b> aún sin volver</span>${e.mediana!==null?`<span>Tardan <b>${e.mediana}</b> días de mediana en volver</span>`:""}</div>
+    <div class="d">Socias con su primera gestión en los últimos ${EXITO_DIAS} días que ya han vuelto a entrenar. ${e.solas?`Aparte, ${e.solas} volvieron solas antes de que nadie las gestionara (no cuentan).`:""}</div></div>`;
+}
+const pct=(a,b)=>b?Math.round(100*a/b):null;
+function kpiCard(title,val,desc,target,good){
+  const cls=val===null?"":good?"ok":"bad";
+  return `<div class="kpi ${cls}"><div class="t">${title}</div><div class="v">${val===null?"—":val+"%"}</div><div class="bar"><i style="width:${val??0}%"></i></div><div class="d">${desc} · objetivo ${target}</div></div>`;
+}
+function viewInforme(){
+  const k=kpis(), t=today();
+  const p1=pct(k.aTiempo,k.ventana), p2=pct(k.abiertas-k.venc,k.abiertas), p3=pct(k.vuelven,k.base);
+  const totalSocias=estado?.totalSocias||null;
+  const pMia=totalSocias?pct(socias.filter(s=>s.estado!=="excluida"&&diasSin(s)>=MIN_DIAS).length,totalSocias):null;
+  const rows=TEAM.map(w=>{
+    const mine=socias.filter(s=>isMine(s,w));
+    const hoy=gestiones.filter(g=>g.dia===t&&g.por===w).length;
+    const sem=gestiones.filter(g=>g.por===w&&daysBetween(g.dia,t)<=6).length;
+    const vencW=mine.filter(s=>s.prox&&s.prox<t).length;
+    const volv=vueltas.filter(v=>v.por===w&&daysBetween(v.vueltaFecha,t)<=30).length;
+    const ex=exito(w);
+    return `<tr><td>${w}</td><td class="n">${mine.length}</td><td class="n">${hoy}</td><td class="n">${sem}</td><td class="n">${vencW}</td><td class="n">${volv}</td><td class="n">${ex.gestionadas?`${ex.vuelven} de ${ex.gestionadas} (${ex.pct}%)`:"—"}</td></tr>`;}).join("");
+  const pend=gestiones.filter(g=>g.ose==="pendiente").length, errs=gestiones.filter(g=>g.ose==="error");
+  const recientes=gestiones.slice().sort((a,b)=>b.fecha.localeCompare(a.fecha)).slice(0,25);
+  return `<h2>Informe del ${esc(fmt(t))}</h2>
+    <p class="hint">${estado?.ultimaSync?`Última sincronización con OSE: ${esc(estado.ultimaSync.replace("T"," ").slice(0,16))}.`:"Aún no se ha sincronizado con OSE."} ${totalSocias?`Socias en alta: ${totalSocias}.`:""}</p>
+    <div class="kpis">
+      ${exitoCard()}
+      ${kpiCard("Contactadas en 48 h",p1,`${k.aTiempo} de ${k.ventana} socias nuevas en la lista`,"90%",p1!==null&&p1>=90)}
+      ${kpiCard("Seguimiento al día",p2,`${k.venc} atrasadas de ${k.abiertas}`,"100%",p2!==null&&p2>=95)}
+      ${kpiCard("Vuelven en 14 días",p3,`${k.vuelven} de ${k.base} con gestión`,"50%",p3!==null&&p3>=50)}
+      <div class="kpi ${k.riesgo?"warn":"ok"}"><div class="t">Riesgo de baja abierto</div><div class="v">${k.riesgo}</div><div class="d">Socias que hablan de dejarlo (marcadas “Riesgo de baja”). Las lleva Eva. Las que ya están en proceso de baja en OSE no se gestionan aquí.</div></div>
+    </div>
+    ${pMia!==null?`<p class="hint">Socias MIA (6+ días) sobre el total: <b>${pMia}%</b>. Referencia de club sano según Curves: por debajo del 30%.</p>`:""}
+    <h2>Por entrenadora</h2>
+    <div class="tbl"><table><thead><tr><th>Entrenadora</th><th>Asignadas</th><th>Hoy</th><th>Últimos 7 días</th><th>Atrasadas</th><th>Han vuelto (30 d)</th><th>Éxito (60 d)</th></tr></thead><tbody>${rows}</tbody></table></div>
+    <h2>Informe diario</h2>
+    <p class="hint">Se guarda una foto cada vez que sincronizo con OSE.</p>
+    <div class="tbl"><table><thead><tr><th>Fecha</th><th>MIA abiertas</th><th>Nuevas</th><th>Han vuelto</th><th>Gestiones</th><th>Contactadas 48 h</th><th>Al día</th><th>Riesgo baja</th></tr></thead><tbody>${informes.slice(0,14).map(i=>`<tr><td>${esc(fmt(i.fecha))} ${esc(i.hora||"")}</td><td class="n">${i.mia??"—"}</td><td class="n">${i.nuevasHoy??"—"}</td><td class="n">${i.vueltasHoy??"—"}</td><td class="n">${i.gestionesHoy??"—"}</td><td class="n">${i.kpi?.contactadas48h??"—"}${i.kpi?.contactadas48h!=null?"%":""}</td><td class="n">${i.kpi?.alDia??"—"}${i.kpi?.alDia!=null?"%":""}</td><td class="n">${i.kpi?.riesgoBaja??"—"}</td></tr>`).join("")||'<tr><td colspan="8">Aún no hay informes.</td></tr>'}</tbody></table></div>
+    <h2>Volcado a OSE</h2>
+    <p class="hint">${pend} gestiones esperando a pasar a OSE. ${errs.length?`<span class="err">${errs.length} con error: ${errs.slice(0,5).map(g=>esc(g.nombre)).join(", ")}.</span>`:"Sin errores."}</p>
+    <div class="tbl"><table><thead><tr><th>Fecha</th><th>Socia</th><th>Quién</th><th>Resultado</th><th>OSE</th></tr></thead><tbody>${recientes.map(g=>`<tr><td>${esc(fmt(g.dia))} ${esc(g.fecha.slice(11,16))}</td><td>${esc(String(g.nombre).toLowerCase())}</td><td>${esc(g.por)}</td><td>${esc(etiqueta(g.codigo,g.fechaRef,g.prox))}</td><td>${g.ose==="volcada"?'<span class="pill ok">volcada</span>':g.ose==="error"?'<span class="pill bad">error</span>':'<span class="pill warn">pendiente</span>'}</td></tr>`).join("")||'<tr><td colspan="5">Todavía no hay gestiones.</td></tr>'}</tbody></table></div>`;
+}
+function viewGuion(){
+  return `<h2>Cómo va la llamada</h2>
+  <div class="script"><h3>Siempre</h3><p>De 6 a 15 días: WhatsApp directamente, sin llamar. Desde 16 días: llama tú, con nombre y cariño; si no coge, manda el WhatsApp del botón en ese momento. Si no contesta, marca “Sin respuesta”. En los mensajes no hace falta decir que somos de Curves: tienen nuestro número guardado. Nunca ofrezcas pausa. Hasta 15 días solo buscamos el día que viene. Desde 16 días proponemos volver con una revisión del entreno, salvo que el motivo sea salud, cuidar a un familiar o un viaje: entonces solo cerramos fecha.</p></div>
+  <div class="script"><h3>6 a 15 días · Susana · por WhatsApp</h3><p class="q">“Hola ${"{nombre}"}! Soy Susana. Te hemos echado de menos en el circuito, ¿va todo bien? Lo importante es no perder el ritmo: ¿te va mejor el martes o el jueves?”</p><p>WhatsApp directamente, sin llamar: usa el mensaje de su ficha. Sin revisión de entreno: solo cerrar el día que viene. Da dos opciones de día: es más fácil elegir que decidir.</p></div>
+  <div class="script"><h3>16 a 30 días · Manoli</h3><p class="q">“Te echamos de menos. Sé que a veces la vida se complica; te propongo una revisión para volver a tu ritmo, sin prisas. ¿Qué día te va bien?”</p><p>Escucha primero: aquí suele haber un motivo de fondo. Si es salud, cuidar a un familiar o un viaje, no ofrezcas revisión: solo fecha.</p></div>
+  <div class="script"><h3>Más de 30 días · Eva</h3><p class="q">“Hace tiempo que no coincidimos y nos acordamos de ti. Te propongo volver con una revisión adaptada a cómo estás ahora. La fuerza es de lo mejor que puedes hacer por tu cuerpo y por tu cabeza.”</p><p>Revisión solo si el motivo no es salud, cuidar a un familiar o un viaje. Si dice que lo quiere dejar o habla de dinero, marca “Riesgo de baja”.</p></div>
+  <h2>Cuando te dice…</h2>
+  <details class="script"><summary>“No tengo tiempo”</summary><p class="q">“Te entiendo. El circuito son 30 minutos y no hace falta venir todos los días. ¿Qué día tienes media hora? Te lo apunto ya.”</p><p>Revisión del entreno solo desde 16 días sin venir y si el motivo no es salud, cuidar a un familiar o un viaje.</p><p>Marca “Vuelve” con la fecha. Si no concreta, “Contesta sin fecha”.</p></details>
+  <details class="script"><summary>“Estoy lesionada / mala”</summary><p class="q">“Lo primero es que te recuperes. Cuando te den el ok, aquí te esperamos y lo tenemos en cuenta en el circuito.”</p><p>Sin revisión. Marca “Salud” y pon el día para volver a preguntar.</p></details>
+  <details class="script"><summary>“Tengo que cuidar a un familiar”</summary><p class="q">“Lo primero es tu familia. Cuando puedas, aquí tienes tu media hora para ti. ¿Te llamo la semana que viene y vemos cómo vas?”</p><p>Sin revisión. Marca “Salud” y pon el día para volver a preguntar.</p></details>
+  <details class="script"><summary>“Estoy de viaje”</summary><p class="q">“¡Disfrútalo! ¿Qué día vuelves? Te apunto para esa semana y retomamos.”</p><p>Sin revisión. Marca “Fuera” con la fecha de vuelta.</p></details>
+  <details class="script"><summary>“No tengo ganas / me cuesta”</summary><p class="q">“Nos pasa a todas. No hace falta volver a tope: empiezas con dos días y, si llevas más de 15 días sin venir, revisamos tu entreno. Lo difícil es el primero; después te acuerdas de lo bien que sienta.”</p><p>Busca una fecha. Si no la da, “Contesta sin fecha”.</p></details>
+  <details class="script"><summary>“Ahora no me lo puedo permitir”</summary><p class="q">“Gracias por contármelo. Déjame que lo hable con Eva y te llamamos.”</p><p>No prometas nada. Marca “Riesgo de baja”.</p></details>
+  <h2>Qué significa cada resultado</h2>
+  <div class="tbl"><table><thead><tr><th>Resultado</th><th>Cuándo</th><th>Siguiente paso automático</th></tr></thead><tbody>
+    <tr><td>Vuelve</td><td>Da día concreto</td><td>El día siguiente se comprueba si vino</td></tr>
+    <tr><td>Sin respuesta</td><td>No coge; WhatsApp enviado</td><td>Mañana otra vez. A la 3ª, pasa a Eva</td></tr>
+    <tr><td>Contesta sin fecha</td><td>Responde pero no concreta</td><td>El día de seguimiento que pongas (o en 2 días hábiles)</td></tr>
+    <tr><td>Salud</td><td>Lesión, enfermedad o cuidar a un familiar</td><td>El día que pongas (o en 5 días hábiles)</td></tr>
+    <tr><td>Fuera</td><td>Viaje o vacaciones</td><td>El día después de volver</td></tr>
+    <tr><td>Riesgo de baja</td><td>Quiere dejarlo o habla de dinero</td><td>Pasa a Eva hoy</td></tr>
+    <tr><td>Pasar a Eva</td><td>Otro caso delicado</td><td>Pasa a Eva hoy</td></tr>
+    <tr><td>Cursar baja definitiva</td><td>Solo MIA de Eva: quiere darse de baja</td><td>Eva le explica cómo tramitarla (con las condiciones de OSE y la regularización por mes disfrutado del pack de 12 meses: 11 €, o 16 € si la cuota es de 69 €); seguimiento el día que pongas o en 5 días hábiles. Si marcas “Baja ya tramitada en OSE”, el caso se cierra y sale de todas las listas</td></tr>
+    <tr><td colspan="3">Si mandas un WhatsApp, elige tú el día del próximo seguimiento para no insistir demasiado.</td></tr>
+  </tbody></table></div>`;
+}
+
+function route(){const h=(location.hash||"#hoy").slice(1);return ["hoy","todas","informe","guion"].includes(h)?h:"hoy";}
+function render(){
+  const ae=document.activeElement; if(ae&&ae.dataset&&(ae.dataset.msg||ae.dataset.resp)){pendingRender=true;return;}
+  const r=route();
+  document.querySelectorAll("nav.tabs a").forEach(a=>{if(a.dataset.tab===r)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current");});
+  if(me) $("#tabHoyN").textContent=socias.filter(s=>isMine(s,me)&&dueState(s)!=="futuro").length; else $("#tabHoyN").textContent="·";
+  $("#tabTodasN").textContent=socias.filter(contactable).length||"·";
+  const v=$("#view");
+  if(!db){v.innerHTML=`<div class="empty">Abre esta página con tu cuenta de Claude para ver y registrar las gestiones.</div>`;return;}
+  if(!ready.s){v.innerHTML=`<div class="empty">Cargando socias…</div>`;return;}
+  if(!socias.length&&r!=="guion"){v.innerHTML=`<div class="empty">Todavía no hay socias cargadas. El listado se carga desde OSE en la próxima sincronización.</div>`;return;}
+  const y=window.scrollY;
+  v.innerHTML=buscar.trim()?viewBuscar():r==="hoy"?viewHoy():r==="todas"?viewTodas():r==="informe"?viewInforme():viewGuion();
+  window.scrollTo(0,y);
+  if(openForm) wireForm(openForm);
+}
+document.querySelectorAll("nav.tabs a").forEach(a=>a.addEventListener("click",()=>{if(buscar){buscar="";$("#gq").value="";openForm=null;setTimeout(render,0);}}));
+window.addEventListener("hashchange",()=>{openForm=null;render();window.scrollTo(0,0);});
+
+document.addEventListener("click",async e=>{
+  const rc=e.target.closest("[data-rcopy]");
+  if(rc){const r=riesgos.find(x=>x.id===rc.dataset.rcopy);if(!r)return;try{await navigator.clipboard.writeText(riesgoOSE(r));toast("Texto copiado: pégalo en el Histórico de OSE");}catch(err){toast(riesgoOSE(r));}return;}
+  const rk=e.target.closest("[data-rok],[data-rno]");
+  if(rk){const id=rk.dataset.rok||rk.dataset.rno, ok=!!rk.dataset.rok;
+    if(!me){toast("Primero elige quién eres arriba");return;}
+    if(!db)return; rk.disabled=true;
+    try{await db.doc("riesgos/"+id).update({estado:ok?"apuntado":"descartado",por:me,cerrado:new Date().toISOString()});toast(ok?"Hecho: queda apuntado en OSE":"Quitado de la lista");}
+    catch(err){rk.disabled=false;toast(err&&err.code==="invalid_argument"?"No tienes permiso para guardar. Pide a Eva acceso de colaboradora.":"No se ha guardado ("+(err.code||"error")+")");}
+    return;}
+  const tr=e.target.closest("[data-tr]");
+  if(tr){traducirCard(tr.dataset.tr,tr.dataset.to,tr);return;}
+  if(e.target.closest("[data-trall]")){traducirTodos();return;}
+  const sg=e.target.closest("[data-sug]");
+  if(sg){sugerir(sg.dataset.sug);return;}
+  const cm=e.target.closest("[data-copymsg]");
+  const wl=e.target.closest("[data-wa]");
+  if(wl){const t=document.getElementById("m"+wl.dataset.wa);if(t)msgSent[wl.dataset.wa]=t.value.trim();return;}
+  if(cm){const t=document.getElementById("m"+cm.dataset.copymsg);if(t)msgSent[cm.dataset.copymsg]=t.value.trim();try{await navigator.clipboard.writeText(t.value);toast("Mensaje copiado");}catch(err){t.select();toast("Selecciona y copia el texto");}return;}
+  const c=e.target.closest("[data-copy]");
+  if(c){try{await navigator.clipboard.writeText(c.dataset.copy);toast("Teléfono copiado");}catch(err){toast(c.dataset.copy);}return;}
+  const o=e.target.closest("[data-open]");
+  if(o){ if(!me){toast("Primero elige quién eres arriba");return;} openForm=openForm===o.dataset.open?null:o.dataset.open;pendingRender=false;render();return;}
+  const x=e.target.closest("[data-exclude]");
+  if(x){const s=socias.find(s=>s.num===x.dataset.exclude);if(!s)return;
+    if(x.dataset.confirm!=="1"){x.dataset.confirm="1";x.textContent="Pulsa otra vez para confirmar";return;}
+    try{await db.doc("socias/"+s.num).set(caseDoc(s,{estado:"excluida"}));toast("Sacada de la lista");}catch(err){toast("No se pudo guardar: "+(err.code||""));}}
+});
+document.addEventListener("change",async e=>{
+  const a=e.target.closest("[data-assign]");
+  if(a){const s=socias.find(x=>x.num===a.dataset.assign);if(!s)return;try{await db.doc("socias/"+s.num).set(caseDoc(s,{ownerManual:a.value||""}));toast(a.value?"Asignada a "+a.value:"Asignación automática");}catch(err){toast("No se pudo guardar: "+(err.code||""));}return;}
+  if(e.target.id==="fo"){filtro.owner=e.target.value;render();}
+  if(e.target.id==="ft"){filtro.tramo=e.target.value;render();}
+  if(e.target.id==="fc"){filtro.cod=e.target.value;render();}
+});
+document.addEventListener("focusout",e=>{if(e.target.dataset&&(e.target.dataset.msg||e.target.dataset.resp)&&pendingRender){pendingRender=false;setTimeout(render,0);}});
+document.addEventListener("input",e=>{const rt=e.target.closest&&e.target.closest("[data-resp]");if(rt){resp[rt.dataset.resp]=rt.value;return;}const mt=e.target.closest&&e.target.closest("[data-msg]");if(mt){const num=mt.dataset.msg;msgEdits[num]=mt.value;if(msgSent[num]!=null)msgSent[num]=mt.value.trim();const s=socias.find(x=>x.num===num);const a=document.querySelector(`[data-wa="${num}"]`);if(s&&a)a.href=waHref(s,mt.value);return;}if(e.target.id==="gq"){buscar=e.target.value;openForm=null;clearTimeout(render._g);render._g=setTimeout(render,200);return;}if(e.target.id==="fq"){filtro.q=e.target.value;clearTimeout(render._t);render._t=setTimeout(()=>{render();const i=$("#fq");if(i){i.focus();i.setSelectionRange(i.value.length,i.value.length);}},250);}});
+
+function wireForm(num){
+  const s=socias.find(x=>x.num===num); const f=document.getElementById("f"+num); if(!s||!f) return;
+  const id="f"+num; let code=null;
+  const sw=$("#"+id+"-segwrap"), seg=$("#"+id+"-seg"); let segTocado=false;
+  const nextOf=()=>{const nx=computeNext(s,code,fd.value);if(!sw.hidden&&seg.value)nx.prox=seg.value;return nx;};
+  const syncSeg=()=>{sw.hidden=canal.value!=="WhatsApp"||!code||code==="SIN FECHA";if(!sw.hidden&&!segTocado){const p=computeNext(s,code,fd.value).prox;seg.value=p>today()?p:nextWorkdayFrom(today());}};
+  seg.addEventListener("input",()=>{segTocado=true;});
+  const fw=$("#"+id+"-fwrap"), fl=$("#"+id+"-flabel"), fd=$("#"+id+"-fecha"), nota=$("#"+id+"-nota"), canal=$("#"+id+"-canal"), ose=$("#"+id+"-ose"), err=$("#"+id+"-err");
+  // Baja ya tramitada en OSE: cierra el caso al guardar (Eva, 12/11/2026)
+  const tw=$("#"+id+"-tramwrap"), tram=$("#"+id+"-tram");
+  const cerrar=()=>code==="BAJA DEFINITIVA"&&tram.checked;
+  const notaFinal=()=>{const n=nota.value.trim();return cerrar()?("Baja tramitada en OSE, caso cerrado"+(n?". "+n:"")).slice(0,NOTA_MAX):n;};
+  const preview=()=>{ if(!code){return;} syncSeg(); const c=CODES.find(c=>c.k===code); const nx=nextOf();
+    fw.hidden=c.fecha==="no"||cerrar(); if(cerrar()) sw.hidden=true;
+    const g={tramo:tramoOf(diasSin(s)),codigo:code,fechaRef:c.fecha!=="no"&&!cerrar()?fd.value:"",por:me,canal:canal.value,prox:cerrar()?"":nx.prox,nota:notaFinal(),mensaje:mensajeEnviado(s,canal.value)};
+    ose.textContent=oseText(s,g); };
+  tram.addEventListener("change",preview);
+  f.querySelectorAll(".code").forEach(b=>b.addEventListener("click",()=>{
+    code=b.dataset.code; f.querySelectorAll(".code").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));
+    tw.hidden=code!=="BAJA DEFINITIVA"; if(tw.hidden) tram.checked=false;
+    const c=CODES.find(c=>c.k===code); fw.hidden=c.fecha==="no"; fl.textContent=c.fl||"Fecha"+(c.fecha==="opt"?" (opcional)":"");
+    if(code==="SIN RESPUESTA") canal.value="WhatsApp";
+    err.hidden=true; preview();}));
+  [fd,nota,canal,seg].forEach(el=>el.addEventListener("input",preview));canal.addEventListener("change",preview);
+  // Si Claude ha sugerido la respuesta, el formulario sale rellenado (se puede cambiar todo)
+  const sp=sugg[num];
+  if(sp){canal.value="WhatsApp";if(sp.nota)nota.value=sp.nota;const b=sp.codigo&&f.querySelector(`.code[data-code="${sp.codigo}"]`);if(b){b.click();if(sp.fecha&&!fw.hidden){fd.value=sp.fecha;}}preview();}
+  f.addEventListener("submit",async ev=>{
+    ev.preventDefault(); err.hidden=true;
+    if(!code){err.textContent="Elige un resultado.";err.hidden=false;return;}
+    const c=CODES.find(c=>c.k===code);
+    if(cerrar()){
+      const save=$("#"+id+"-save"); save.disabled=true; save.textContent="Guardando…";
+      const now=new Date(); const dia=today();
+      const g={num:s.num,nombre:s.nombre,fecha:dia+"T"+pad(now.getHours())+":"+pad(now.getMinutes()),dia,por:me,codigo:code,canal:canal.value,fechaRef:"",nota:notaFinal(),tramo:tramoOf(diasSin(s)),dias:diasSin(s),prox:"",ose:"pendiente",mensaje:mensajeEnviado(s,canal.value),cierra:true};
+      g.textoOSE=oseText(s,g);
+      try{
+        await db.collection("gestiones").add(g);
+        await db.doc("socias/"+s.num).set(caseDoc(s,{estado:"excluida",escalada:false,prox:"",intentos:0,primeraGestion:s.primeraGestion||dia,motivoExclusion:"Baja tramitada en OSE",excluidaFecha:dia,excluidaPor:me,ultGestionApp:{dia,hora:g.fecha.slice(11,16),por:me,codigo:code,nota:g.nota,fechaRef:"",prox:""}}));
+        delete msgEdits[s.num]; delete msgSent[s.num]; delete resp[s.num]; delete sugg[s.num]; delete sugSt[s.num]; openForm=null; pendingRender=false; toast("Caso cerrado: baja tramitada. Ya no sale en las listas."); build(); render();
+      }catch(er){save.disabled=false;save.textContent="Guardar";err.textContent=er&&er.code==="invalid_argument"?"No tienes permiso para guardar. Pide a Eva acceso de colaboradora.":"No se ha guardado ("+(er.code||"error")+"). Vuelve a intentarlo.";err.hidden=false;}
+      return;
+    }
+    if(c.fecha==="req"&&!fd.value){err.textContent="Pon la fecha: es lo que hace que el seguimiento salga solo.";err.hidden=false;return;}
+    if(c.fecha!=="no"&&fd.value&&fd.value<today()){err.textContent="La fecha no puede ser anterior a hoy.";err.hidden=false;return;}
+    if((c.fecha!=="no"&&fd.value&&esFinde(fd.value))||(!sw.hidden&&seg.value&&esFinde(seg.value))){err.textContent="Sábado y domingo el club está cerrado: elige un día de lunes a viernes.";err.hidden=false;return;}
+    if(!sw.hidden&&seg.value&&seg.value<=today()){err.textContent="El seguimiento tiene que ser a partir de mañana.";err.hidden=false;return;}
+    const save=$("#"+id+"-save"); save.disabled=true; save.textContent="Guardando…";
+    const now=new Date(); const dia=today(); const nx=nextOf();
+    const g={num:s.num,nombre:s.nombre,fecha:dia+"T"+pad(now.getHours())+":"+pad(now.getMinutes()),dia,por:me,codigo:code,canal:canal.value,fechaRef:c.fecha!=="no"?(fd.value||""):"",nota:nota.value.trim().slice(0,NOTA_MAX),tramo:tramoOf(diasSin(s)),dias:diasSin(s),prox:nx.prox,ose:"pendiente",mensaje:mensajeEnviado(s,canal.value)};
+    g.textoOSE=oseText(s,g);
+    try{
+      await db.collection("gestiones").add(g);
+      await db.doc("socias/"+s.num).set(caseDoc(s,{prox:nx.prox,intentos:nx.intentos,escalada:nx.escalada,primeraGestion:s.primeraGestion||dia,ultGestionApp:{dia,hora:g.fecha.slice(11,16),por:me,codigo:code,nota:g.nota,fechaRef:g.fechaRef,prox:nx.prox}}));
+      delete msgEdits[s.num]; delete msgSent[s.num]; delete resp[s.num]; delete sugg[s.num]; delete sugSt[s.num]; openForm=null; pendingRender=false; toast("Guardado. Pasa a OSE en la próxima sincronización."); build(); render();
+    }catch(er){save.disabled=false;save.textContent="Guardar";err.textContent=er&&er.code==="invalid_argument"?"No tienes permiso para guardar. Pide a Eva acceso de colaboradora.":"No se ha guardado ("+(er.code||"error")+"). Vuelve a intentarlo.";err.hidden=false;}
+  });
+}
+
+function setSync(){
+  const el=$("#sync");
+  if(!db){el.textContent="Sin conexión";return;}
+  el.textContent=estado?.ultimaSync?"OSE sincronizado "+estado.ultimaSync.slice(8,10)+"/"+estado.ultimaSync.slice(5,7)+" "+estado.ultimaSync.slice(11,16):"Pendiente de sincronizar con OSE";
+}
+
+if(me) document.querySelectorAll(".chip[data-who]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.who===me)));
+render();
+(async()=>{try{const f=window.claude&&window.claude.use?await window.claude.use("sample"):null;if(f){sampleFn=f;if(!openForm)render();}}catch(e){}})();
+(async()=>{
+  try{ db=window.claude&&window.claude.use?await window.claude.use("db"):null; }catch(e){db=null;}
+  if(!db){ready.s=true;render();setSync();return;}
+  const timer=setTimeout(()=>{if(!ready.s){ready.s=true;render();}},10000);
+  const refresh=()=>{build();if(openForm){pendingRender=true;}else render();};
+  let gotCasos=false,gotSnap=false;
+  db.collection("socias").limit(1000).onSnapshot(q=>{const m={};q.docs.forEach(d=>m[d.id]={...d.data(),num:d.id});casos=m;gotCasos=true;if(gotSnap){clearTimeout(timer);ready.s=true;}refresh();},err=>{clearTimeout(timer);ready.s=true;render();toast("No se pudo leer el listado ("+err.code+")");});
+  db.collection("snapshots").orderBy("fecha","desc").limit(3).onSnapshot(q=>{const docs=q.docs.map(d=>({...d.data(),id:d.id})).sort((a,b)=>b.id.localeCompare(a.id));snap=docs[0]||null;gotSnap=true;if(gotCasos){clearTimeout(timer);ready.s=true;}refresh();},()=>{gotSnap=true;});
+  db.collection("informes").orderBy("fecha","desc").limit(30).onSnapshot(q=>{informes=q.docs.map(d=>({...d.data(),id:d.id})).sort((a,b)=>b.id.localeCompare(a.id));estado=informes[0]?{ultimaSync:informes[0].fecha+"T"+informes[0].hora,totalSocias:informes[0].totalSocias}:estado;setSync();if(route()==="informe"&&!openForm)render();},()=>{});
+  db.collection("mensajes").orderBy("escrito","desc").limit(1000).onSnapshot(q=>{const m={};q.docs.forEach(d=>{const v=d.data();m[d.id]={texto:v.texto,textoCa:v.textoCa||""};});mensajes=m;if(!openForm&&!document.activeElement?.dataset?.msg)render();},()=>{});
+  db.collection("vueltas").where("vueltaFecha",">=",iso(new Date(Date.now()-90*86400000))).limit(1000).onSnapshot(q=>{vueltas=q.docs.map(d=>d.data());if(route()==="informe"&&!openForm)render();},()=>{});
+  db.collection("riesgos").where("estado","==","pendiente").limit(200).onSnapshot(q=>{riesgos=q.docs.map(d=>({...d.data(),id:d.id}));if(route()==="hoy"&&!openForm&&!buscar.trim())render();},()=>{});
+  const desde=iso(new Date(Date.now()-60*86400000));
+  db.collection("gestiones").where("dia",">=",desde).orderBy("dia","desc").limit(1000).onSnapshot(snap=>{gestiones=snap.docs.map(d=>({...d.data(),id:d.id}));ready.g=true;if(!openForm)render();},()=>{});
+
+})();
+})();
+</script>
+
+</body></html>

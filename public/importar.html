@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Importar datos · MIA Sant Cugat</title>
+<script src="config.js"></script>
+<script src="vendor/supabase.js"></script>
+<script src="shim.js"></script>
+<style>
+  body{margin:0;font-family:system-ui,sans-serif;background:#f6f2fb;color:#2d1d3d}
+  main{max-width:640px;margin:0 auto;padding:28px 18px}
+  h1{color:#5b2a86;font-size:24px;margin:0 0 6px}
+  .card{background:#fff;border-radius:14px;padding:18px;margin:16px 0;box-shadow:0 4px 18px rgba(90,40,120,.1)}
+  button{font:700 15px system-ui;padding:11px 16px;border:0;border-radius:10px;background:#a3238e;color:#fff;cursor:pointer}
+  button:disabled{opacity:.5;cursor:default}
+  table{border-collapse:collapse;width:100%;font-size:14px}
+  td,th{padding:6px 8px;border-bottom:1px solid #eee;text-align:left}
+  #log{white-space:pre-wrap;font:13px ui-monospace,monospace;color:#444}
+  .warn{color:#8a4b00}
+</style></head>
+<body><main>
+  <h1>Importar datos de la app antigua</h1>
+  <p>Sube el archivo <b>mia-export-….json</b> que descargaste desde la app MIA de Claude (botón «Exportar datos»). Se hace una sola vez, el día del cambio.</p>
+  <div class="card">
+    <input type="file" id="f" accept="application/json,.json">
+    <div id="resumen"></div>
+    <p class="warn" id="aviso" hidden></p>
+    <button id="go" disabled>Importar</button>
+  </div>
+  <div class="card"><div id="log">Esperando archivo…</div></div>
+  <p><a href="./">← Volver a la app</a></p>
+</main>
+<script>
+(async () => {
+  const log = (t) => { document.getElementById("log").textContent += "\n" + t; };
+  await window.claude.use("db"); // pide login
+  const sb = window.MIA_SB;
+  let payload = null;
+  const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+  document.getElementById("f").addEventListener("change", async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    try {
+      payload = JSON.parse(await file.text());
+      if (!payload || typeof payload.collections !== "object") throw new Error("Formato no reconocido");
+    } catch (err) { payload = null; document.getElementById("log").textContent = "Archivo no válido: " + err.message; return; }
+    const rows = Object.entries(payload.collections).map(([n, l]) => `<tr><td>${esc(n)}</td><td>${l.length}</td></tr>`).join("");
+    document.getElementById("resumen").innerHTML = `<p>Exportado el ${esc(payload.exportado || "?")}</p><table><tr><th>Colección</th><th>Documentos</th></tr>${rows}</table>`;
+    const { count } = await sb.from("docs").select("id", { count: "exact", head: true });
+    const aviso = document.getElementById("aviso");
+    if (count) { aviso.hidden = false; aviso.textContent = `Ojo: Supabase ya tiene ${count} documentos. Los que tengan el mismo id se sobrescriben; el resto se queda.`; }
+    document.getElementById("go").disabled = false;
+    document.getElementById("log").textContent = "Listo para importar.";
+  });
+
+  document.getElementById("go").addEventListener("click", async () => {
+    if (!payload) return;
+    const btn = document.getElementById("go");
+    btn.disabled = true;
+    let total = 0;
+    for (const [name, list] of Object.entries(payload.collections)) {
+      const rows = list.map((d) => ({ collection: name, id: String(d.id), data: d.data || {}, version: 1 }));
+      for (let i = 0; i < rows.length; i += 400) {
+        const chunk = rows.slice(i, i + 400);
+        const { error } = await sb.from("docs").upsert(chunk, { onConflict: "collection,id" });
+        if (error) { log(`✗ ${name}: ${error.message}`); btn.disabled = false; return; }
+        total += chunk.length;
+      }
+      log(`✓ ${name}: ${rows.length}`);
+    }
+    log(`\nHecho: ${total} documentos importados.`);
+  });
+})();
+</script>
+</body></html>

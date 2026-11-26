@@ -1,0 +1,11 @@
+{
+  "name": "mia-sant-cugat",
+  "private": true,
+  "version": "1.0.0",
+  "description": "App de seguimiento de socias MIA de Curves Sant Cugat (Supabase + Vercel)",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build-config.mjs"
+  },
+  "engines": { "node": ">=18" }
+}
