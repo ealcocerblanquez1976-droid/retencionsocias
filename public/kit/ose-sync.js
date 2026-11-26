@@ -93,7 +93,7 @@ window.OSE = (() => {
     return get(new URL(a.getAttribute('href'), det.url).href);
   }
   const norm = s => String(s || '').replace(/\s+/g, ' ').trim();
-  function yaEsta(hist, texto) { return hist.doc.body.textContent.replace(/\s+/g, ' ').includes(norm(texto).slice(0, 60)); }
+  function yaEsta(hist, texto) { return hist.doc.body.textContent.replace(/\s+/g, ' ').includes(norm(texto).slice(0, 180)); }
   // g = {num, dia:'YYYY-MM-DD', hora:'HH:MM', por:'Susana', canal:'Llamada'|'WhatsApp'|'En persona', textoOSE}
   async function registrar(g) {
     if (!loggedIn()) throw new Error('SESION_OSE_CADUCADA');
