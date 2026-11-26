@@ -341,6 +341,88 @@
     doc: (path) => { const [n, id] = splitPath(path); return new DocRef(n, id); },
   });
 
+  /* ---------- Instalar como aplicación (PWA) ---------- */
+  let installEvt = null;
+  window.addEventListener("beforeinstallprompt", (e) => { e.preventDefault(); installEvt = e; });
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => navigator.serviceWorker.register("/sw.js").catch(() => {}));
+  }
+  const standalone = () => window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
+  const INSTALL_CSS = `
+  #mia-install-btn{margin-left:auto}
+  #mia-install{position:fixed;inset:0;z-index:9998;background:rgba(42,33,64,.45);display:flex;align-items:flex-end;justify-content:center}
+  #mia-install .sheet{background:#fff;border-radius:20px 20px 0 0;width:min(100%,520px);max-height:88vh;overflow:auto;padding:28px 20px 28px;
+    font-family:"Nunito Sans",system-ui,sans-serif;color:#2a2140;box-shadow:0 -10px 40px rgba(90,40,120,.2)}
+  #mia-install h2{margin:0 0 4px;color:#5b2a86;font:900 22px "Nunito",system-ui}
+  #mia-install h3{margin:18px 0 6px;font:800 16px "Nunito",system-ui;color:#2a2140}
+  #mia-install .hi{background:#f6f3fb;border-radius:12px;padding:10px 12px}
+  #mia-install ol{margin:6px 0 0;padding-left:22px;line-height:1.5}
+  #mia-install .row{display:flex;gap:10px;align-items:center;margin-top:6px}
+  #mia-install .row img{width:52px;height:52px;border-radius:12px}
+  #mia-install .go{font:800 16px "Nunito",system-ui;padding:12px 16px;border:0;border-radius:12px;background:#a3238e;color:#fff;cursor:pointer;width:100%;margin-top:8px}
+  #mia-install .close{font:700 15px system-ui;padding:10px;border:1px solid #d8cfe6;border-radius:12px;background:#fff;color:#5b2a86;width:100%;margin-top:16px;cursor:pointer}
+  #mia-install small{color:#6d6385}`;
+  function openInstall() {
+    injectCss();
+    if (!document.getElementById("mia-install-css")) {
+      const st = document.createElement("style"); st.id = "mia-install-css"; st.textContent = INSTALL_CSS; document.head.appendChild(st);
+    }
+    const ua = navigator.userAgent;
+    const ios = /iPhone|iPad|iPod/i.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+    const android = /Android/i.test(ua);
+    const w = document.createElement("div");
+    w.id = "mia-install";
+    w.setAttribute("role", "dialog");
+    w.setAttribute("aria-modal", "true");
+    w.innerHTML = `<div class="sheet">
+      <h2>Instalar la app en el móvil</h2>
+      <div class="row"><img src="/icons/icon-192.png" alt=""><small>Tendrás el icono <b>Socias MIA</b> en la pantalla de inicio. Se abre como una app, a pantalla completa y sin la barra del navegador.</small></div>
+      ${installEvt ? `<button class="go" type="button" data-act="install">Instalar ahora</button>` : ""}
+      <h3>iPhone (con Safari)</h3>
+      <div class="${ios ? "hi" : ""}"><ol>
+        <li>Abre <b>retencionsocias.vercel.app</b> en <b>Safari</b> (en Chrome de iPhone no sale la opción).</li>
+        <li>Pulsa el botón <b>Compartir</b> (el cuadrado con la flecha hacia arriba).</li>
+        <li>Baja y toca <b>Añadir a pantalla de inicio</b> → <b>Añadir</b>.</li>
+      </ol></div>
+      <h3>Android (con Chrome)</h3>
+      <div class="${android ? "hi" : ""}"><ol>
+        <li>Abre <b>retencionsocias.vercel.app</b> en <b>Chrome</b>.</li>
+        <li>Pulsa el menú <b>⋮</b> (arriba a la derecha).</li>
+        <li>Toca <b>Instalar aplicación</b> o <b>Añadir a pantalla de inicio</b>.</li>
+      </ol></div>
+      <h3>Después</h3>
+      <ol><li>Abre la app desde el icono <b>Socias MIA</b>.</li>
+        <li>Entra una vez con tu email y contraseña: se queda guardado.</li></ol>
+      <p><small>La app necesita internet para ver y guardar las gestiones: los datos de las socias no se guardan en el móvil.</small></p>
+      <button class="close" type="button" data-act="close">Cerrar</button></div>`;
+    w.addEventListener("click", async (e) => {
+      const act = e.target && e.target.dataset && e.target.dataset.act;
+      if (e.target === w || act === "close") w.remove();
+      if (act === "install" && installEvt) {
+        installEvt.prompt();
+        try { await installEvt.userChoice; } catch (_) {}
+        installEvt = null;
+        w.remove();
+      }
+    });
+    document.body.appendChild(w);
+    w.querySelector(".close").focus();
+  }
+  window.MIA_INSTALAR = openInstall;
+  domReady().then(() => {
+    const row = document.querySelector(".who");
+    if (!row || standalone() || document.getElementById("mia-install-btn")) return;
+    const b = document.createElement("button");
+    b.id = "mia-install-btn";
+    b.type = "button";
+    b.className = "chip";
+    b.style.marginLeft = "auto";
+    b.textContent = "Instalar app";
+    b.setAttribute("aria-haspopup", "dialog");
+    b.addEventListener("click", openInstall);
+    row.appendChild(b);
+  });
+
   window.claude = Object.freeze({
     use: async (name) => {
       if (name === "db") { await ensureSession(); return db; }
