@@ -795,7 +795,7 @@ function render(){
   if(me) $("#tabHoyN").textContent=socias.filter(s=>isMine(s,me)&&dueState(s)!=="futuro").length; else $("#tabHoyN").textContent="·";
   $("#tabTodasN").textContent=socias.filter(contactable).length||"·";
   const v=$("#view");
-  if(!db){v.innerHTML=`<div class="empty">Abre esta página con tu cuenta de Claude para ver y registrar las gestiones.</div>`;return;}
+  if(!db){v.innerHTML=`<div class="empty">Entra con tu usuario para ver y registrar las gestiones.</div>`;return;}
   if(!ready.s){v.innerHTML=`<div class="empty">Cargando socias…</div>`;return;}
   if(!socias.length&&r!=="guion"){v.innerHTML=`<div class="empty">Todavía no hay socias cargadas. El listado se carga desde OSE en la próxima sincronización.</div>`;return;}
   const y=window.scrollY;
